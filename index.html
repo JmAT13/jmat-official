@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Equity Platform | ロマンは資産になる</title>
+    <meta name="description" content="妄想・願望・人生で一度きりの体験を出資×共同権利×体験価値に変換するプラットフォーム">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #E63946;
+            --primary-orange: #F4A261;
+            --gradient-primary: linear-gradient(135deg, #E63946 0%, #FF6B6B 50%, #F4A261 100%);
+            --gradient-hero: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-accent: linear-gradient(135deg, #E63946 0%, #FF6B6B 100%);
+            --text-dark: #1a1a2e;
+            --text-gray: #6b7280;
+            --bg-light: #f9fafb;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.5s ease;
+        }
+
+        .navbar.scrolled {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .navbar.scrolled .logo-text {
+            color: var(--text-dark);
+        }
+
+        .logo-subtitle {
+            font-size: 0.625rem;
+            color: rgba(255,255,255,0.7);
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .navbar.scrolled .logo-subtitle {
+            color: var(--text-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: var(--text-gray);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled .mobile-menu-btn span {
+            background: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .hero-circle-1 {
+            width: 400px;
+            height: 400px;
+            background: #E63946;
+            top: -100px;
+            left: -100px;
+        }
+
+        .hero-circle-2 {
+            width: 300px;
+            height: 300px;
+            background: #F4A261;
+            top: 30%;
+            right: 5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-circle-3 {
+            width: 200px;
+            height: 200px;
+            background: #3b82f6;
+            bottom: 10%;
+            left: 20%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-label {
+            color: #f87171;
+            letter-spacing: 0.5em;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-desc {
+            color: rgba(255,255,255,0.5);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .hero-desc span {
+            color: #f87171;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator div {
+            width: 24px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding-top: 8px;
+        }
+
+        .scroll-indicator div::after {
+            content: '';
+            width: 4px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 2px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Sections Common */
+        section {
+            padding: 8rem 2rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--primary-red);
+            letter-spacing: 0.3em;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-heading {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+        }
+
+        /* Vision Section */
+        .vision {
+            background: var(--bg-light);
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .vision-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+
+        .vision-content p {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .vision-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            margin-top: 0.25rem;
+        }
+
+        .stat-divider {
+            width: 1px;
+            background: #e5e7eb;
+        }
+
+        .vision-image {
+            position: relative;
+        }
+
+        .vision-image img {
+            width: 100%;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .vision-image-accent {
+            position: absolute;
+            bottom: -1.5rem;
+            right: -1.5rem;
+            width: 8rem;
+            height: 8rem;
+            background: var(--gradient-accent);
+            border-radius: 1rem;
+            z-index: -1;
+        }
+
+        .play-button {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .play-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+            margin-left: 3px;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #f3f4f6;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.15);
+        }
+
+        .project-image {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-price {
+            color: var(--primary-red);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1), rgba(244, 162, 97, 0.1));
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            color: var(--primary-red);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Service Section */
+        .service {
+            background: var(--gradient-hero);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service .hero-circle {
+            opacity: 0.05;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .service-content h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .service-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1rem;
+        }
+
+        .service-desc {
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.3s;
+        }
+
+        .service-item:hover .service-icon {
+            background: var(--gradient-accent);
+        }
+
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
+        }
+
+        .service-item-title {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .service-item-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+
+        .service-image {
+            position: relative;
+        }
+
+        .service-image img {
+            width: 100%;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .service-card {
+            position: absolute;
+            bottom: -2rem;
+            left: -2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 280px;
+        }
+
+        .service-card h4 {
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .service-card-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card-item svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--primary-red);
+            fill: none;
+        }
+
+        /* Interview Section */
+        .interview {
+            background: var(--bg-light);
+        }
+
+        .interview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .interview-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .interview-card:hover {
+            transform: scale(1.02);
+        }
+
+        .interview-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .interview-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .interview-name {
+            font-weight: 700;
+        }
+
+        .interview-role {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
+
+        .interview-quote {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Business Model Section */
+        .model {
+            background: white;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .model-card {
+            position: relative;
+        }
+
+        .model-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: #f3f4f6;
+            position: absolute;
+            top: -2rem;
+            left: 0;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .model-card:hover .model-number {
+            color: rgba(230, 57, 70, 0.1);
+        }
+
+        .model-content {
+            position: relative;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #f3f4f6;
+            height: 100%;
+            transition: all 0.4s;
+        }
+
+        .model-card:hover .model-content {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.15);
+        }
+
+        .model-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .model-desc {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .model-fee {
+            padding-top: 1rem;
+            border-top: 1px solid #f3f4f6;
+            color: var(--primary-red);
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .scheme-box {
+            background: var(--bg-light);
+            border-radius: 1.5rem;
+            padding: 3rem;
+        }
+
+        .scheme-title {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        .scheme-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .scheme-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .scheme-item.highlight {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .scheme-item svg {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 0.5rem;
+        }
+
+        .scheme-item:not(.highlight) svg {
+            stroke: var(--primary-red);
+            fill: none;
+        }
+
+        .scheme-item.highlight svg {
+            stroke: white;
+            fill: none;
+        }
+
+        .scheme-item-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .scheme-item-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
+        .scheme-arrow {
+            color: rgba(230, 57, 70, 0.3);
+            font-size: 1.5rem;
+        }
+
+        /* Revenue Section */
+        .revenue {
+            background: var(--bg-light);
+        }
+
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .revenue-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .revenue-content p {
+            color: var(--text-gray);
+        }
+
+        .revenue-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .revenue-card h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .revenue-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .revenue-label {
+            font-weight: 500;
+        }
+
+        .revenue-sublabel {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .revenue-value {
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-align: right;
+        }
+
+        .revenue-total {
+            background: var(--gradient-accent);
+            margin: -2rem;
+            margin-top: 1rem;
+            padding: 1.5rem 2rem;
+            border-radius: 0 0 1.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .revenue-total-label {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .revenue-total-sublabel {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .revenue-total-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+        }
+
+        /* Entry Section */
+        .entry {
+            background: var(--gradient-hero);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .entry .hero-circle {
+            opacity: 0.05;
+        }
+
+        .entry-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .entry h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .entry p {
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 3rem;
+        }
+
+        .entry-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .entry-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .entry-stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+        }
+
+        .entry-stat-label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            color: #f87171;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #f87171;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-tagline {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .vision-grid,
+            .service-grid,
+            .revenue-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .projects-grid,
+            .interview-grid,
+            .model-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .projects-grid,
+            .interview-grid,
+            .model-grid,
+            .entry-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vision-stats {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .stat-divider {
+                display: none;
+            }
+
+            .scheme-flow {
+                flex-direction: column;
+            }
+
+            .scheme-arrow {
+                transform: rotate(90deg);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .service-card {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 2rem;
+                max-width: none;
+            }
+
+            .vision-image-accent {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div>
+                    <span class="logo-text">DREAM EQUITY</span>
+                    <span class="logo-subtitle">PLATFORM</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#service">Service</a></li>
+                <li><a href="#model">Model</a></li>
+                <li><a href="#entry">Entry</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-circle hero-circle-1"></div>
+        <div class="hero-circle hero-circle-2"></div>
+        <div class="hero-circle hero-circle-3"></div>
+        
+        <div class="hero-content">
+            <p class="hero-label">INFINITE WISH PLATFORM</p>
+            <h1 class="hero-title"><span class="gradient-text">ロマンは資産になる。</span></h1>
+            <p class="hero-subtitle">Dreams become equity.</p>
+            <p class="hero-desc">
+                妄想・願望・人生で一度きりの体験を<br>
+                <span>出資 × 共同権利 × 体験価値</span>に変換するプラットフォーム
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    プロジェクトを見る
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#entry" class="btn btn-secondary">出資者登録</a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div></div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision" id="vision">
+        <div class="container">
+            <div class="vision-grid">
+                <div class="vision-content">
+                    <p class="section-label section-title">VISION</p>
+                    <h2>誰もが持つ<br><span class="gradient-text">"人生の夢"に</span><br>価値をつける。</h2>
+                    <p>
+                        「いつか温泉を掘りたい」「理想の秘書と暮らしたい」「重機で建物を壊してみたい」——
+                        誰もが心のどこかに持っている、少し非日常的な夢。
+                        Dream Equity Platformは、そんな夢を"出資可能なプロジェクト"として具現化し、
+                        実現後の体験価値や権利をNFTとして証明・流通させることで、
+                        夢そのものを資産化する世界初のプラットフォームです。
+                    </p>
+                    <div class="vision-stats">
+                        <div class="stat">
+                            <p class="stat-value gradient-text section-title">¥4B+</p>
+                            <p class="stat-label">想定取扱高</p>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat">
+                            <p class="stat-value gradient-text section-title">20%</p>
+                            <p class="stat-label">プラットフォーム手数料</p>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat">
+                            <p class="stat-value gradient-text section-title">∞</p>
+                            <p class="stat-label">実現可能な夢</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="vision-image">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format" alt="Vision">
+                    <div class="vision-image-accent"></div>
+                    <div class="play-button">
+                        <div class="play-icon">
+                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        </div>
+                        <div>
+                            <p style="font-weight: 700;">Brand Movie</p>
+                            <p style="font-size: 0.875rem; opacity: 0.7;">コンセプト動画を見る</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label section-title">PROJECTS</p>
+                <h2 class="section-heading"><span class="gradient-text">夢への出資</span>が、<br>未来の権利になる。</h2>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&auto=format" alt="Executive Secretary">
+                        <span class="project-badge">Executive Secretary</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">超VIP専属秘書</h3>
+                        <p class="project-price">¥100,000,000 / 年</p>
+                        <p class="project-desc">元CA・一流企業秘書・モデル経験者による究極のパーソナルサポート</p>
+                        <div class="project-tags">
+                            <span class="project-tag">NFT会員権</span>
+                            <span class="project-tag">24時間対応</span>
+                            <span class="project-tag">2名体制</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=800&auto=format" alt="Hot Spring">
+                        <span class="project-badge">Hot Spring Project</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">温泉掘削オーナー権</h3>
+                        <p class="project-price">¥10,000,000〜</p>
+                        <p class="project-desc">温泉開発に出資し、成功時に源泉利用権NFTを獲得</p>
+                        <div class="project-tags">
+                            <span class="project-tag">源泉利用権NFT</span>
+                            <span class="project-tag">掘削体験</span>
+                            <span class="project-tag">二次流通可</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format" alt="Demolition">
+                        <span class="project-badge">Demolition Experience</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">解体体験プロジェクト</h3>
+                        <p class="project-price">¥500,000〜</p>
+                        <p class="project-desc">重機操作・解体作業を安全に体験できる唯一無二のプログラム</p>
+                        <div class="project-tags">
+                            <span class="project-tag">優先参加権NFT</span>
+                            <span class="project-tag">廃材アート</span>
+                            <span class="project-tag">限定体験</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Section -->
+    <section class="service" id="service">
+        <div class="hero-circle hero-circle-1" style="bottom: -100px; right: -100px; top: auto; left: auto;"></div>
+        <div class="hero-circle hero-circle-2" style="top: 50px; left: 50px; right: auto;"></div>
+        
+        <div class="container">
+            <div class="service-grid">
+                <div class="service-content">
+                    <p class="section-label section-title">FLAGSHIP SERVICE</p>
+                    <h2>年会費1億円<br><span class="gradient-text">超VIP専属秘書</span></h2>
+                    <p class="service-subtitle">"人生で一度は理想の秘書と暮らす"という夢に価格をつける</p>
+                    <p class="service-desc">
+                        元CA・一流企業秘書・モデル経験者など、厳選された人材が
+                        24時間体制であなたの日常をサポート。完全合法設計で、
+                        介助・見守りサービスとして最高品質の体験を提供します。
+                    </p>
+                    
+                    <div class="services-grid">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                            </div>
+                            <div>
+                                <p class="service-item-title">スケジュール管理</p>
+                                <p class="service-item-desc">24時間体制で完璧な時間管理</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div>
+                                <p class="service-item-title">全同行サービス</p>
+                                <p class="service-item-desc">買い物・イベント・出張に同行</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            </div>
+                            <div>
+                                <p class="service-item-title">健康サポート</p>
+                                <p class="service-item-desc">食事管理・ストレスケア・医療連携</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13"/><polygon points="22,2 15,22 11,13 2,9"/></svg>
+                            </div>
+                            <div>
+                                <p class="service-item-title">国内外出張同行</p>
+                                <p class="service-item-desc">プライベートジェット手配対応</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <div>
+                                <p class="service-item-title">ライフスタイル</p>
+                                <p class="service-item-desc">コンシェルジュ・VIPサロン優先</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/></svg>
+                            </div>
+                            <div>
+                                <p class="service-item-title">専属チーム</p>
+                                <p class="service-item-desc">2名1チーム制・24時間対応</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format" alt="Executive Secretary">
+                    <div class="service-card">
+                        <h4>専属秘書の採用基準</h4>
+                        <div class="service-card-item">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                            <span>年齢：20〜35歳</span>
+                        </div>
+                        <div class="service-card-item">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                            <span>経歴：CA / 一流企業秘書 / モデル</span>
+                        </div>
+                        <div class="service-card-item">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                            <span>資格：介助知識 + 接遇</span>
+                        </div>
+                        <div class="service-card-item">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                            <span>体制：2名1チーム制・24時間</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview Section -->
+    <section class="interview">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label section-title">INTERVIEW</p>
+                <h2 class="section-heading">出資者の<span class="gradient-text">声</span></h2>
+            </div>
+            
+            <div class="interview-grid">
+                <div class="interview-card">
+                    <div class="interview-header">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format" alt="出資者A様" class="interview-avatar">
+                        <div>
+                            <p class="interview-name">出資者 A様</p>
+                            <p class="interview-role">経営者・50代</p>
+                        </div>
+                    </div>
+                    <p class="interview-quote">"温泉掘削という夢が、NFTという形で資産になる。これは革命的です。"</p>
+                </div>
+                
+                <div class="interview-card">
+                    <div class="interview-header">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format" alt="出資者B様" class="interview-avatar">
+                        <div>
+                            <p class="interview-name">出資者 B様</p>
+                            <p class="interview-role">投資家・40代</p>
+                        </div>
+                    </div>
+                    <p class="interview-quote">"秘書サービスの品質は期待以上。人生が変わりました。"</p>
+                </div>
+                
+                <div class="interview-card">
+                    <div class="interview-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format" alt="出資者C様" class="interview-avatar">
+                        <div>
+                            <p class="interview-name">出資者 C様</p>
+                            <p class="interview-role">医師・60代</p>
+                        </div>
+                    </div>
+                    <p class="interview-quote">"解体体験は一生の思い出。NFTで権利を持てるのも魅力です。"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section class="model" id="model">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label section-title">BUSINESS MODEL</p>
+                <h2 class="section-heading"><span class="gradient-text">3層構造</span>の<br>エコシステム</h2>
+            </div>
+            
+            <div class="model-grid">
+                <div class="model-card">
+                    <span class="model-number">01</span>
+                    <div class="model-content">
+                        <h3 class="model-title">プロジェクト層</h3>
+                        <p class="model-desc">温泉・秘書・解体体験など各事業者が企画を登録。出資者は"ロマンに出資"。</p>
+                        <p class="model-fee">プラットフォーム手数料 20%</p>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="model-number">02</span>
+                    <div class="model-content">
+                        <h3 class="model-title">権利（NFT）層</h3>
+                        <p class="model-desc">出資すると自動でNFT権利が付与。売買可能で市場が形成される。</p>
+                        <p class="model-fee">二次流通手数料 3〜5%</p>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <span class="model-number">03</span>
+                    <div class="model-content">
+                        <h3 class="model-title">実体験提供層</h3>
+                        <p class="model-desc">実際に体験価値を提供。ツアー・サービス・イベントを実施。</p>
+                        <p class="model-fee">体験パッケージ粗利 40〜70%</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scheme-box">
+                <h3 class="scheme-title">全体スキーム</h3>
+                <div class="scheme-flow">
+                    <div class="scheme-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <p class="scheme-item-title">出資者</p>
+                    </div>
+                    <span class="scheme-arrow">→</span>
+                    <div class="scheme-item highlight">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <p class="scheme-item-title">DREAM EQUITY<br>プラットフォーム</p>
+                        <p class="scheme-item-subtitle">企画審査・法務・決済・NFT発行</p>
+                    </div>
+                    <span class="scheme-arrow">→</span>
+                    <div class="scheme-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <p class="scheme-item-title">プロジェクト<br>運営者</p>
+                    </div>
+                    <span class="scheme-arrow">→</span>
+                    <div class="scheme-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <p class="scheme-item-title">NFT権利<br>体験価値</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revenue Section -->
+    <section class="revenue">
+        <div class="container">
+            <div class="revenue-grid">
+                <div class="revenue-content">
+                    <p class="section-label section-title">REVENUE STRUCTURE</p>
+                    <h2><span class="gradient-text">年会費1億円</span><br>収益構造</h2>
+                    <p>富裕層10名で4億円以上の固定収益を創出。高い粗利率と継続性を両立したビジネスモデル。</p>
+                </div>
+                
+                <div class="revenue-card">
+                    <h4>コスト構造（年間）</h4>
+                    <div class="revenue-item">
+                        <div>
+                            <p class="revenue-label">秘書人件費（2名）</p>
+                            <p class="revenue-sublabel">高給＋24h拘束補填</p>
+                        </div>
+                        <p class="revenue-value">¥24,000,000〜<br>30,000,000</p>
+                    </div>
+                    <div class="revenue-item">
+                        <div>
+                            <p class="revenue-label">管理費</p>
+                            <p class="revenue-sublabel">マネジメント・法務</p>
+                        </div>
+                        <p class="revenue-value">¥10,000,000</p>
+                    </div>
+                    <div class="revenue-item">
+                        <div>
+                            <p class="revenue-label">旅行/宿泊/移動</p>
+                            <p class="revenue-sublabel">世界対応</p>
+                        </div>
+                        <p class="revenue-value">¥10,000,000〜<br>20,000,000</p>
+                    </div>
+                    <div class="revenue-item">
+                        <div>
+                            <p class="revenue-label">医療・安全チーム</p>
+                            <p class="revenue-sublabel">提携医師/看護師</p>
+                        </div>
+                        <p class="revenue-value">¥5,000,000</p>
+                    </div>
+                    <div class="revenue-total">
+                        <div>
+                            <p class="revenue-total-label">粗利</p>
+                            <p class="revenue-total-sublabel">High Revenue</p>
+                        </div>
+                        <p class="revenue-total-value">¥40M〜50M</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Entry Section -->
+    <section class="entry" id="entry">
+        <div class="hero-circle hero-circle-1" style="top: 0; left: 25%;"></div>
+        <div class="hero-circle hero-circle-2" style="bottom: 0; right: 25%; top: auto;"></div>
+        
+        <div class="container">
+            <div class="entry-content">
+                <p class="section-label section-title">ENTRY</p>
+                <h2><span class="gradient-text">夢への出資</span>を<br>始めましょう。</h2>
+                <p>出資者登録をいただくと、最新プロジェクト情報や限定NFT先行販売のご案内をお届けします。</p>
+                
+                <div class="entry-buttons">
+                    <a href="#" class="btn btn-primary">
+                        出資者登録（無料）
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#" class="btn btn-secondary">プロジェクト提案</a>
+                </div>
+                
+                <div class="entry-stats">
+                    <div>
+                        <p class="entry-stat-value gradient-text">無料</p>
+                        <p class="entry-stat-label">出資者登録</p>
+                    </div>
+                    <div>
+                        <p class="entry-stat-value gradient-text">20%</p>
+                        <p class="entry-stat-label">プラットフォーム手数料</p>
+                    </div>
+                    <div>
+                        <p class="entry-stat-value gradient-text">3-5%</p>
+                        <p class="entry-stat-label">NFT二次流通</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div>
+                            <span class="logo-text" style="color: white;">DREAM EQUITY</span>
+                            <span class="logo-subtitle">PLATFORM</span>
+                        </div>
+                    </div>
+                    <p class="footer-desc">
+                        妄想・願望・人生で一度きりの体験を<br>
+                        資産に変えるプラットフォーム
+                    </p>
+                </div>
+                
+                <div>
+                    <p class="footer-title">PROJECTS</p>
+                    <ul class="footer-links">
+                        <li><a href="#">超VIP専属秘書</a></li>
+                        <li><a href="#">温泉掘削オーナー権</a></li>
+                        <li><a href="#">解体体験プロジェクト</a></li>
+                        <li><a href="#">海外医療ミッション</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <p class="footer-title">COMPANY</p>
+                    <ul class="footer-links">
+                        <li><a href="#">会社概要</a></li>
+                        <li><a href="#">運営会社</a></li>
+                        <li><a href="#">利用規約</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <p class="footer-title">CONTACT</p>
+                    <ul class="footer-links">
+                        <li><a href="#">お問い合わせ</a></li>
+                        <li><a href="#">出資者登録</a></li>
+                        <li><a href="#">プロジェクト提案</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 DREAM EQUITY PLATFORM. All rights reserved.</p>
+                <p class="footer-tagline">"Romance becomes equity."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem 2rem';
+                navLinks.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            } else {
+                navLinks.style.display = '';
+                navLinks.style.flexDirection = '';
+                navLinks.style.position = '';
+                navLinks.style.top = '';
+                navLinks.style.left = '';
+                navLinks.style.right = '';
+                navLinks.style.background = '';
+                navLinks.style.padding = '';
+                navLinks.style.boxShadow = '';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .interview-card, .model-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
