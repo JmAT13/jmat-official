@@ -1,654 +1,801 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronRight, Users, Shield, Heart, Plane, Clock, Award, Globe, Sparkles, Crown, Building2, Gem } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JmAT Japan合同会社 | Connecting lives to ∞ POSSIBLE</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; 
+            line-height: 1.8; 
+            color: #333; 
+            overflow-x: hidden; 
+        }
 
-const DreamEquityPlatform = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+        /* ========== アニメーション ========== */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .animate-left { opacity: 0; transform: translateX(-60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-left.animated { opacity: 1; transform: translateX(0); }
+        .animate-right { opacity: 0; transform: translateX(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-right.animated { opacity: 1; transform: translateX(0); }
+        .animate-scale { opacity: 0; transform: scale(0.8); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-scale.animated { opacity: 1; transform: scale(1); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
 
-  const services = [
-    { icon: Clock, title: 'スケジュール管理', desc: '24時間体制で完璧な時間管理' },
-    { icon: Users, title: '全同行サービス', desc: '買い物・イベント・出張に同行' },
-    { icon: Heart, title: '健康サポート', desc: '食事管理・ストレスケア・医療連携' },
-    { icon: Plane, title: '国内外出張同行', desc: 'プライベートジェット手配対応' },
-    { icon: Shield, title: 'ライフスタイル', desc: 'コンシェルジュ・VIPサロン優先' },
-    { icon: Award, title: '専属チーム', desc: '2名1チーム制・24時間対応' },
-  ];
+        /* ========== ヘッダー（ミント色ベース） ========== */
+        header {
+            background: rgba(125, 211, 192, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 4rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 1rem 4rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo {
+            color: #4a3c2a;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        nav { display: flex; gap: 3rem; }
+        .nav-item { position: relative; }
+        .nav-link {
+            color: #4a3c2a;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: #3d3225; }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            padding: 0.5rem 0;
+        }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .dropdown a:hover { background: #f0f0f0; }
+        .hamburger { display: none; cursor: pointer; }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: #4a3c2a;
+            margin: 6px 0;
+            transition: 0.3s;
+        }
 
-  const projects = [
-    {
-      title: '超VIP専属秘書',
-      subtitle: 'Executive Secretary',
-      price: '¥100,000,000 / 年',
-      image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&auto=format',
-      tags: ['NFT会員権', '24時間対応', '2名体制'],
-      desc: '元CA・一流企業秘書・モデル経験者による究極のパーソナルサポート'
-    },
-    {
-      title: '温泉掘削オーナー権',
-      subtitle: 'Hot Spring Project',
-      price: '¥10,000,000〜',
-      image: 'https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=800&auto=format',
-      tags: ['源泉利用権NFT', '掘削体験', '二次流通可'],
-      desc: '温泉開発に出資し、成功時に源泉利用権NFTを獲得'
-    },
-    {
-      title: '解体体験プロジェクト',
-      subtitle: 'Demolition Experience',
-      price: '¥500,000〜',
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format',
-      tags: ['優先参加権NFT', '廃材アート', '限定体験'],
-      desc: '重機操作・解体作業を安全に体験できる唯一無二のプログラム'
-    },
-  ];
+        /* ========== ヒーローセクション（ミント色グラデーション） ========== */
+        .hero {
+            background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #4a3c2a;
+            text-align: center;
+            padding: 14rem 2rem 10rem;
+            margin-top: 75px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(74, 60, 42, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 60, 42, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 2; }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            animation: fadeInUp 1s ease forwards;
+        }
+        .hero h1 .infinity {
+            display: inline-block;
+            color: #4a3c2a;
+        }
+        .hero .possible {
+            display: block;
+            font-size: 5rem;
+            color: #4a3c2a;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+            text-shadow: 0 0 40px rgba(74, 60, 42, 0.3);
+        }
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            color: #3d3225;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #4a3c2a;
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4);
+        }
 
-  const businessModel = [
-    { layer: '01', title: 'プロジェクト層', desc: '温泉・秘書・解体体験など各事業者が企画を登録。出資者は"ロマンに出資"。', fee: 'プラットフォーム手数料 20%' },
-    { layer: '02', title: '権利（NFT）層', desc: '出資すると自動でNFT権利が付与。売買可能で市場が形成される。', fee: '二次流通手数料 3〜5%' },
-    { layer: '03', title: '実体験提供層', desc: '実際に体験価値を提供。ツアー・サービス・イベントを実施。', fee: '体験パッケージ粗利 40〜70%' },
-  ];
+        /* ========== パートナーセクション ========== */
+        .clients-section {
+            padding: 3rem 0;
+            background: #f8f8f8;
+            overflow: hidden;
+        }
+        .clients-section h3 {
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .clients-slider {
+            display: flex;
+            animation: scroll 20s linear infinite;
+            width: max-content;
+        }
+        .client-logo {
+            height: 60px;
+            margin: 0 3rem;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
 
-  return (
-    <div className="min-h-screen bg-black text-white" style={{ fontFamily: "'Noto Sans JP', 'Cormorant Garamond', sans-serif" }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
-        
-        * {
-          box-sizing: border-box;
+        /* ========== VALUES セクション ========== */
+        .values-section {
+            padding: 8rem 2rem;
+            background: white;
         }
-        
-        .gradient-gold {
-          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+        .values-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            color: #7dd3c0;
+            margin-bottom: 4rem;
         }
-        
-        .gradient-bg {
-          background: linear-gradient(180deg, rgba(191,149,63,0.1) 0%, rgba(0,0,0,0) 100%);
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        .gold-border {
-          border: 1px solid rgba(191,149,63,0.3);
+        .value-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            transition: all 0.3s;
         }
-        
-        .gold-glow {
-          box-shadow: 0 0 60px rgba(191,149,63,0.2);
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
-        
-        .hero-gradient {
-          background: radial-gradient(ellipse at 50% 0%, rgba(191,149,63,0.15) 0%, transparent 70%);
+        .value-card .value-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
         }
-        
-        .card-hover {
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .value-card h3 {
+            font-size: 2rem;
+            color: #7dd3c0;
+            margin-bottom: 1rem;
         }
-        
-        .card-hover:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 60px rgba(191,149,63,0.2);
+        .value-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.8;
         }
-        
-        .line-animation {
-          position: relative;
+
+        /* ========== ABOUT セクション（ミント色） ========== */
+        .about-section {
+            padding: 8rem 2rem;
+            background: #7dd3c0;
+            color: #4a3c2a;
+            text-align: center;
         }
-        
-        .line-animation::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 1px;
-          background: linear-gradient(90deg, #BF953F, #FCF6BA);
-          transition: width 0.4s ease;
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
-        
-        .line-animation:hover::after {
-          width: 100%;
+        .about-section h2 .highlight { color: #3d3225; }
+        .about-section .tagline {
+            color: #3d3225;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            font-weight: 600;
         }
-        
-        .parallax-bg {
-          background-attachment: fixed;
-          background-size: cover;
-          background-position: center;
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #4a3c2a;
         }
-        
-        .stagger-in {
-          animation: staggerIn 0.8s ease forwards;
-          opacity: 0;
-          transform: translateY(30px);
+
+        /* ========== SERVICES セクション ========== */
+        .services-section {
+            padding: 8rem 2rem;
+            background: #f8f8f8;
         }
-        
-        @keyframes staggerIn {
-          to {
+        .services-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            color: #7dd3c0;
+            margin-bottom: 4rem;
+        }
+        .services-section h2 .highlight { color: #4a3c2a; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 4px;
+            background: #4a3c2a;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: #7dd3c0;
+            margin-bottom: 1rem;
+        }
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .service-card .arrow {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: #4a3c2a;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+        .service-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ========== PROJECTS セクション ========== */
+        .projects-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+        .projects-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #7dd3c0;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .project-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .project-card:hover img { transform: scale(1.1); }
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(125, 211, 192, 0.95));
+            color: #4a3c2a;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        .project-card:hover .project-overlay { transform: translateY(0); }
+        .project-overlay h3 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        .project-overlay p { font-size: 0.9rem; opacity: 0.8; }
+
+        /* ========== CONTACT セクション（ミント色） ========== */
+        .contact-section {
+            padding: 8rem 2rem;
+            background: #7dd3c0;
+            color: #4a3c2a;
+            text-align: center;
+        }
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .contact-section h2 .highlight { color: #3d3225; }
+        .contact-section p {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: #3d3225;
+        }
+        .contact-btn {
+            display: inline-block;
+            background: #4a3c2a;
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4);
+        }
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            max-width: 800px;
+            margin: 4rem auto 0;
+            text-align: left;
+        }
+        .contact-location h3 {
+            color: #3d3225;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .contact-location p {
+            margin: 0;
+            color: #4a3c2a;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .contact-location a {
+            color: #3d3225;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ========== フッター（暗めのミント色） ========== */
+        footer {
+            background: #5ab8a5;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #4a3c2a;
+        }
+        .footer-section ul { list-style: none; }
+        .footer-section a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            display: block;
+            padding: 0.4rem 0;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ========== マスコット ========== */
+        .mascot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        .mascot {
+            width: 150px;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+            transition: transform 0.3s;
+        }
+        .mascot:hover { transform: scale(1.1); }
+        .mascot-bubble {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+        .mascot-container:hover .mascot-bubble {
             opacity: 1;
             transform: translateY(0);
-          }
         }
-        
-        .shimmer {
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-          background-size: 200% 100%;
-          animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-        
-        .rotating-border {
-          position: relative;
-        }
-        
-        .rotating-border::before {
-          content: '';
-          position: absolute;
-          inset: -2px;
-          background: conic-gradient(from 0deg, #BF953F, #FCF6BA, #B38728, #BF953F);
-          border-radius: inherit;
-          z-index: -1;
-          animation: rotate 4s linear infinite;
-        }
-        
-        @keyframes rotate {
-          to { transform: rotate(360deg); }
-        }
-        
-        .noise-overlay {
-          position: relative;
-        }
-        
-        .noise-overlay::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-          opacity: 0.03;
-          pointer-events: none;
+        .mascot-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 40px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white;
         }
 
-        .scroll-indicator {
-          animation: bounce 2s infinite;
+        /* ========== レスポンシブ ========== */
+        @media (max-width: 1024px) {
+            .values-grid, .services-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-info-grid { grid-template-columns: 1fr; text-align: center; }
         }
-        
-        @keyframes bounce {
-          0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-          40% { transform: translateY(-10px); }
-          60% { transform: translateY(-5px); }
+        @media (max-width: 768px) {
+            header { padding: 1rem 2rem; }
+            nav { display: none; }
+            .hamburger { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .possible { font-size: 3rem; }
+            .hero { padding: 10rem 2rem 6rem; }
+            .values-grid, .services-grid, .projects-grid { grid-template-columns: 1fr; }
+            .about-section h2, .services-section h2 { font-size: 2.5rem; }
+            .footer-content { grid-template-columns: 1fr; }
+            .mascot { width: 120px; }
         }
-      `}</style>
-
-      {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-black/90 backdrop-blur-lg' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Gem className="w-8 h-8 text-amber-400" />
-            <span className="text-xl font-light tracking-widest">DREAM EQUITY</span>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-8">
-            {['Vision', 'Projects', 'Service', 'Model', 'Entry'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-sm tracking-wider text-gray-300 hover:text-amber-400 transition-colors line-animation">
-                {item}
-              </a>
-            ))}
-          </div>
-          
-          <button 
-            className="md:hidden text-amber-400"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <div className="space-y-1.5">
-              <div className={`w-6 h-0.5 bg-amber-400 transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-              <div className={`w-6 h-0.5 bg-amber-400 transition-all ${isMenuOpen ? 'opacity-0' : ''}`}></div>
-              <div className={`w-6 h-0.5 bg-amber-400 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
-            </div>
-          </button>
-        </div>
-        
-        {/* Mobile Menu */}
-        <div className={`md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg transition-all duration-300 ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-          <div className="px-6 py-4 space-y-4">
-            {['Vision', 'Projects', 'Service', 'Model', 'Entry'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="block text-gray-300 hover:text-amber-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center hero-gradient noise-overlay overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-          <p className="text-amber-400/80 tracking-[0.5em] text-sm mb-8 stagger-in" style={{ animationDelay: '0.2s' }}>
-            INFINITE WISH PLATFORM
-          </p>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 leading-tight stagger-in" style={{ animationDelay: '0.4s', fontFamily: "'Cormorant Garamond', serif" }}>
-            <span className="gradient-gold">ロマンは資産になる。</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-gray-400 mb-4 stagger-in" style={{ animationDelay: '0.6s', fontFamily: "'Cormorant Garamond', serif" }}>
-            Dreams become equity.
-          </p>
-          
-          <p className="text-gray-500 max-w-2xl mx-auto mb-12 leading-relaxed stagger-in" style={{ animationDelay: '0.8s' }}>
-            妄想・願望・人生で一度きりの体験を<br />
-            <span className="text-amber-400/70">出資 × 共同権利 × 体験価値</span>に変換するプラットフォーム
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center stagger-in" style={{ animationDelay: '1s' }}>
-            <a href="#projects" className="group px-10 py-4 bg-gradient-to-r from-amber-600 to-amber-500 text-black font-medium tracking-wider hover:from-amber-500 hover:to-amber-400 transition-all flex items-center justify-center gap-2">
-              プロジェクトを見る
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href="#entry" className="px-10 py-4 border border-amber-600/50 text-amber-400 tracking-wider hover:bg-amber-600/10 transition-all">
-              出資者登録
-            </a>
-          </div>
-        </div>
-        
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 scroll-indicator">
-          <div className="w-6 h-10 border border-amber-600/30 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-3 bg-amber-500/50 rounded-full"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* Vision Section */}
-      <section id="vision" className="py-32 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <p className="text-amber-400 tracking-[0.3em] text-sm mb-4">VISION</p>
-              <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                誰もが持つ<br />
-                <span className="gradient-gold">"人生の夢"に</span><br />
-                価値をつける。
-              </h2>
-              <p className="text-gray-400 leading-relaxed mb-8">
-                「いつか温泉を掘りたい」「理想の秘書と暮らしたい」「重機で建物を壊してみたい」——
-                誰もが心のどこかに持っている、少し非日常的な夢。
-                Dream Equity Platformは、そんな夢を"出資可能なプロジェクト"として具現化し、
-                実現後の体験価値や権利をNFTとして証明・流通させることで、
-                夢そのものを資産化する世界初のプラットフォームです。
-              </p>
-              <div className="flex gap-4">
-                <div className="text-center">
-                  <p className="text-3xl font-light gradient-gold" style={{ fontFamily: "'Cormorant Garamond', serif" }}>¥4B+</p>
-                  <p className="text-xs text-gray-500 mt-1">想定取扱高</p>
-                </div>
-                <div className="w-px bg-amber-600/20"></div>
-                <div className="text-center">
-                  <p className="text-3xl font-light gradient-gold" style={{ fontFamily: "'Cormorant Garamond', serif" }}>20%</p>
-                  <p className="text-xs text-gray-500 mt-1">プラットフォーム手数料</p>
-                </div>
-                <div className="w-px bg-amber-600/20"></div>
-                <div className="text-center">
-                  <p className="text-3xl font-light gradient-gold" style={{ fontFamily: "'Cormorant Garamond', serif" }}>∞</p>
-                  <p className="text-xs text-gray-500 mt-1">実現可能な夢</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <div className="aspect-square relative gold-border p-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-transparent"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format" 
-                  alt="Vision" 
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <Crown className="w-16 h-16 text-amber-400 mx-auto mb-4" />
-                    <p className="text-2xl tracking-widest" style={{ fontFamily: "'Cormorant Garamond', serif" }}>DREAM EQUITY</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-32 px-6 gradient-bg relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <p className="text-amber-400 tracking-[0.3em] text-sm mb-4">PROJECTS</p>
-            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              <span className="gradient-gold">夢への出資</span>が、<br />
-              未来の権利になる。
-            </h2>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div 
-                key={index} 
-                className="group bg-zinc-900/50 gold-border card-hover overflow-hidden"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-amber-500 text-black text-xs font-medium">
-                      {project.subtitle}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-2xl mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {project.title}
-                  </h3>
-                  <p className="text-amber-400 text-lg mb-4">{project.price}</p>
-                  <p className="text-gray-500 text-sm mb-4">{project.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="text-xs px-2 py-1 border border-amber-600/30 text-amber-400/70">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* VIP Secretary Service Section */}
-      <section id="service" className="py-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-1/2 h-full">
-            <img 
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format" 
-              alt="Executive Secretary"
-              className="w-full h-full object-cover opacity-20"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="max-w-3xl">
-            <p className="text-amber-400 tracking-[0.3em] text-sm mb-4">FLAGSHIP SERVICE</p>
-            <h2 className="text-4xl md:text-6xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              年会費1億円<br />
-              <span className="gradient-gold">超VIP専属秘書</span>
-            </h2>
-            <p className="text-gray-400 text-lg mb-4">
-              "人生で一度は理想の秘書と暮らす"という夢に価格をつける
-            </p>
-            <p className="text-gray-500 mb-12 leading-relaxed">
-              元CA・一流企業秘書・モデル経験者など、厳選された人材が
-              24時間体制であなたの日常をサポート。完全合法設計で、
-              介助・見守りサービスとして最高品質の体験を提供します。
-            </p>
-            
-            <div className="grid sm:grid-cols-2 gap-6 mb-12">
-              {services.map((service, index) => (
-                <div key={index} className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 flex items-center justify-center border border-amber-600/30 group-hover:border-amber-500 transition-colors">
-                    <service.icon className="w-5 h-5 text-amber-500" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-1">{service.title}</h4>
-                    <p className="text-gray-500 text-sm">{service.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="bg-zinc-900/50 gold-border p-8">
-              <h4 className="text-lg mb-6 gradient-gold">専属秘書の採用基準</h4>
-              <div className="grid sm:grid-cols-2 gap-4 text-sm">
-                <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-amber-500" />
-                  <span className="text-gray-400">年齢：20〜35歳</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-amber-500" />
-                  <span className="text-gray-400">経歴：CA / 一流企業秘書 / モデル</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-amber-500" />
-                  <span className="text-gray-400">資格：介助知識 + 接遇</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-amber-500" />
-                  <span className="text-gray-400">体制：2名1チーム制・24時間</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Business Model Section */}
-      <section id="model" className="py-32 px-6 bg-zinc-950">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <p className="text-amber-400 tracking-[0.3em] text-sm mb-4">BUSINESS MODEL</p>
-            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              <span className="gradient-gold">3層構造</span>の<br />
-              エコシステム
-            </h2>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
-            {businessModel.map((item, index) => (
-              <div key={index} className="relative">
-                <div className="text-8xl font-light text-amber-500/10 absolute -top-8 left-0" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {item.layer}
-                </div>
-                <div className="relative bg-zinc-900/30 gold-border p-8 h-full">
-                  <h3 className="text-xl mb-4">{item.title}</h3>
-                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">{item.desc}</p>
-                  <div className="pt-4 border-t border-amber-600/20">
-                    <p className="text-amber-400 text-sm">{item.fee}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* Flow Diagram */}
-          <div className="bg-zinc-900/30 gold-border p-8 md:p-12">
-            <h3 className="text-center text-xl mb-12">全体スキーム</h3>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-center">
-              <div className="bg-amber-600/20 px-6 py-4 rounded-lg">
-                <Globe className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                <p className="text-sm">出資者</p>
-              </div>
-              <ChevronRight className="w-6 h-6 text-amber-600/50 rotate-90 md:rotate-0" />
-              <div className="bg-amber-500 text-black px-6 py-4 rounded-lg">
-                <Building2 className="w-8 h-8 mx-auto mb-2" />
-                <p className="text-sm font-medium">DREAM EQUITY<br />プラットフォーム</p>
-                <p className="text-xs mt-2 opacity-70">企画審査・法務・決済・NFT発行</p>
-              </div>
-              <ChevronRight className="w-6 h-6 text-amber-600/50 rotate-90 md:rotate-0" />
-              <div className="bg-amber-600/20 px-6 py-4 rounded-lg">
-                <Crown className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                <p className="text-sm">プロジェクト<br />運営者</p>
-              </div>
-              <ChevronRight className="w-6 h-6 text-amber-600/50 rotate-90 md:rotate-0" />
-              <div className="bg-amber-600/20 px-6 py-4 rounded-lg">
-                <Gem className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                <p className="text-sm">NFT権利<br />体験価値</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Revenue Structure */}
-      <section className="py-32 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <p className="text-amber-400 tracking-[0.3em] text-sm mb-4">REVENUE STRUCTURE</p>
-              <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                <span className="gradient-gold">年会費1億円</span><br />
-                収益構造
-              </h2>
-              <p className="text-gray-500 mb-8 leading-relaxed">
-                富裕層10名で4億円以上の固定収益を創出。
-                高い粗利率と継続性を両立したビジネスモデル。
-              </p>
-            </div>
-            
-            <div className="bg-zinc-900/30 gold-border p-8">
-              <h4 className="text-lg mb-6">コスト構造（年間）</h4>
-              <div className="space-y-4">
-                {[
-                  { label: '秘書人件費（2名）', value: '¥24,000,000〜30,000,000', desc: '高給＋24h拘束補填' },
-                  { label: '管理費', value: '¥10,000,000', desc: 'マネジメント・法務' },
-                  { label: '旅行/宿泊/移動', value: '¥10,000,000〜20,000,000', desc: '世界対応' },
-                  { label: '医療・安全チーム', value: '¥5,000,000', desc: '提携医師/看護師' },
-                ].map((item, i) => (
-                  <div key={i} className="flex justify-between items-start pb-4 border-b border-zinc-800">
-                    <div>
-                      <p className="text-white">{item.label}</p>
-                      <p className="text-gray-500 text-xs">{item.desc}</p>
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="header-container">
+            <a href="#" class="logo">JmAT</a>
+            <nav>
+                <div class="nav-item"><a href="#" class="nav-link">HOME</a></div>
+                <div class="nav-item">
+                    <a href="#about" class="nav-link">ABOUT</a>
+                    <div class="dropdown">
+                        <a href="about-company.html">会社概要</a>
+                        <a href="about-message.html">代表挨拶</a>
+                        <a href="about-philosophy.html">企業理念</a>
                     </div>
-                    <p className="text-amber-400">{item.value}</p>
-                  </div>
-                ))}
-                <div className="flex justify-between items-center pt-4">
-                  <div>
-                    <p className="text-white text-lg">粗利</p>
-                    <p className="text-gray-500 text-xs">High Revenue</p>
-                  </div>
-                  <p className="text-2xl gradient-gold font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    ¥40,000,000〜50,000,000
-                  </p>
                 </div>
-              </div>
-            </div>
-          </div>
+                <div class="nav-item">
+                    <a href="#services" class="nav-link">SERVICES</a>
+                    <div class="dropdown">
+                        <a href="service-emergency.html">寄付型CF</a>
+                        <a href="service-visitnurse.html">外傷医療×訪問看護</a>
+                        <a href="service-cosmetics.html">コスメティック事業</a>
+                        <a href="service-construction.html">建築・まちづくり</a>
+                        <a href="service-figurine.html">エンタメ事業</a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
+                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
+            </nav>
+            <div class="hamburger"><span></span><span></span><span></span></div>
         </div>
-      </section>
+    </header>
 
-      {/* Entry Section */}
-      <section id="entry" className="py-32 px-6 gradient-bg relative">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-amber-400 tracking-[0.3em] text-sm mb-4">ENTRY</p>
-          <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-            <span className="gradient-gold">夢への出資</span>を<br />
-            始めましょう。
-          </h2>
-          <p className="text-gray-500 mb-12 max-w-xl mx-auto leading-relaxed">
-            出資者登録をいただくと、最新プロジェクト情報や
-            限定NFT先行販売のご案内をお届けします。
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="group px-12 py-5 bg-gradient-to-r from-amber-600 to-amber-500 text-black font-medium tracking-wider hover:from-amber-500 hover:to-amber-400 transition-all flex items-center justify-center gap-2">
-              出資者登録（無料）
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-12 py-5 border border-amber-600/50 text-amber-400 tracking-wider hover:bg-amber-600/10 transition-all">
-              プロジェクト提案
-            </button>
-          </div>
-          
-          <div className="mt-20 grid sm:grid-cols-3 gap-8">
-            {[
-              { label: '出資者登録', value: '無料' },
-              { label: 'プラットフォーム手数料', value: '20%' },
-              { label: 'NFT二次流通', value: '3-5%' },
-            ].map((item, i) => (
-              <div key={i} className="text-center">
-                <p className="text-3xl md:text-4xl font-light gradient-gold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {item.value}
-                </p>
-                <p className="text-gray-500 text-sm">{item.label}</p>
-              </div>
-            ))}
-          </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connecting lives to <span class="infinity">∞</span></h1>
+            <p class="possible">"POSSIBLE"</p>
+            <p class="subtitle">当たり前を、国境や職種をこえてつくるためのプラットフォーム</p>
+            <a href="#about" class="cta-button">GET STARTED</a>
         </div>
-      </section>
+    </section>
 
-      {/* Footer */}
-      <footer className="py-16 px-6 border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <Gem className="w-8 h-8 text-amber-400" />
-                <span className="text-xl font-light tracking-widest">DREAM EQUITY</span>
-              </div>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                妄想・願望・人生で一度きりの体験を<br />
-                資産に変えるプラットフォーム
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="text-amber-400 text-sm tracking-wider mb-4">PROJECTS</h4>
-              <ul className="space-y-2 text-gray-500 text-sm">
-                <li><a href="#" className="hover:text-amber-400 transition-colors">超VIP専属秘書</a></li>
-                <li><a href="#" className="hover:text-amber-400 transition-colors">温泉掘削オーナー権</a></li>
-                <li><a href="#" className="hover:text-amber-400 transition-colors">解体体験プロジェクト</a></li>
-                <li><a href="#" className="hover:text-amber-400 transition-colors">海外医療ミッション</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-amber-400 text-sm tracking-wider mb-4">COMPANY</h4>
-              <ul className="space-y-2 text-gray-500 text-sm">
-                <li><a href="#" className="hover:text-amber-400 transition-colors">会社概要</a></li>
-                <li><a href="#" className="hover:text-amber-400 transition-colors">運営会社</a></li>
-                <li><a href="#" className="hover:text-amber-400 transition-colors">利用規約</a></li>
-                <li><a href="#" className="hover:text-amber-400 transition-colors">プライバシーポリシー</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-amber-400 text-sm tracking-wider mb-4">CONTACT</h4>
-              <ul className="space-y-2 text-gray-500 text-sm">
-                <li><a href="#" className="hover:text-amber-400 transition-colors">お問い合わせ</a></li>
-                <li><a href="#" className="hover:text-amber-400 transition-colors">出資者登録</a></li>
-                <li><a href="#" className="hover:text-amber-400 transition-colors">プロジェクト提案</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600 text-xs">
-              © 2025 DREAM EQUITY PLATFORM. All rights reserved.
-            </p>
-            <p className="text-gray-600 text-xs tracking-wider" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              "Romance becomes equity."
-            </p>
-          </div>
+    <section class="clients-section">
+        <h3>Trusted Partners & Services</h3>
+        <div class="clients-slider">
+            <img src="service-emergency.png" alt="救急医療" class="client-logo">
+            <img src="service-visitnurse.png" alt="訪問看護" class="client-logo">
+            <img src="service-cosmetics.png" alt="コスメティック" class="client-logo">
+            <img src="service-construction.png" alt="建築" class="client-logo">
+            <img src="service-figurine.png" alt="フィギュア" class="client-logo">
+            <img src="infinity-logo.png" alt="JmAT" class="client-logo">
+            <img src="service-emergency.png" alt="救急医療" class="client-logo">
+            <img src="service-visitnurse.png" alt="訪問看護" class="client-logo">
+            <img src="service-cosmetics.png" alt="コスメティック" class="client-logo">
+            <img src="service-construction.png" alt="建築" class="client-logo">
+            <img src="service-figurine.png" alt="フィギュア" class="client-logo">
+            <img src="infinity-logo.png" alt="JmAT" class="client-logo">
         </div>
-      </footer>
+    </section>
+
+    <section class="values-section" id="values">
+        <h2 class="animate-on-scroll">OUR VALUES</h2>
+        <div class="values-grid">
+            <div class="value-card animate-on-scroll delay-1">
+                <div class="value-icon">🚀</div>
+                <h3>Bigger</h3>
+                <p>私たちはより大きく考えます。規模だけでなく、大きなアイデア、思考、創造性において。</p>
+            </div>
+            <div class="value-card animate-on-scroll delay-2">
+                <div class="value-icon">💪</div>
+                <h3>Bolder</h3>
+                <p>大胆であることは私たちのDNAです。他の人がしないことを敢えて行い、インパクトのある仕事を創造します。</p>
+            </div>
+            <div class="value-card animate-on-scroll delay-3">
+                <div class="value-icon">✨</div>
+                <h3>Better</h3>
+                <p>結局のところ、成果を提供するだけでなく、一緒に働くことを楽しめるパートナーであることが最善です。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <h2 class="animate-on-scroll">ABOUT <span class="highlight">US</span></h2>
+        <p class="tagline animate-on-scroll delay-1">現場から世界をつなぐ | 医療とものづくり</p>
+        <p class="animate-on-scroll delay-2">
+            生まれた場所や環境によって、救急医療が届くかどうかが決まってしまう。<br>
+            そのギャップを、現場発の医療チームと建築、そしてプロダクトやエンタメの力で埋めていきたいと考えています。<br><br>
+            命を守る医療と、日常を少し楽しくするコスメやフィギュア。<br>
+            一見離れているように見える領域を「∞」でつなぎ、"楽しむことがそのまま支援になる" 世界をつくっていきます。
+        </p>
+    </section>
+
+    <section class="services-section" id="services">
+        <h2 class="animate-on-scroll">OUR <span class="highlight">SERVICES</span></h2>
+        <div class="services-grid">
+            <a href="service-emergency.html" class="service-card animate-on-scroll delay-1">
+                <h3>寄付型CF</h3>
+                <p>自社プロジェクト専用のクラウドファンディングで、医療が届かない地域への支援を実現します。</p>
+                <span class="arrow">→</span>
+            </a>
+            <a href="service-visitnurse.html" class="service-card animate-on-scroll delay-2">
+                <h3>外傷医療 × 訪問看護</h3>
+                <p>病院に行かなくても外傷・急病に対応できるハイブリッド型現場医療を提供します。</p>
+                <span class="arrow">→</span>
+            </a>
+            <a href="service-construction.html" class="service-card animate-on-scroll delay-3">
+                <h3>Architecture & Care Design</h3>
+                <p>「命を守るインフラ」であり「暮らしをつくる器」としての建築を設計します。</p>
+                <span class="arrow">→</span>
+            </a>
+            <a href="service-figurine.html" class="service-card animate-on-scroll delay-4">
+                <h3>Entertainment</h3>
+                <p>「楽しさ」が支援につながるエンタメ制作で、新しい社会貢献の形を創ります。</p>
+                <span class="arrow">→</span>
+            </a>
+            <a href="service-cosmetics.html" class="service-card animate-on-scroll delay-5">
+                <h3>Cosmetics</h3>
+                <p>現場で本当に役立つスカルプケア・スキンケア製品を開発しています。</p>
+                <span class="arrow">→</span>
+            </a>
+            <a href="service-faq.html" class="service-card animate-on-scroll delay-5">
+                <h3>頭皮・肌ケアプロジェクト</h3>
+                <p>世界共通の悩みに向き合うコスメブランドを展開しています。</p>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+        <h2 class="animate-on-scroll">Our Projects</h2>
+        <p class="section-subtitle animate-on-scroll delay-1">CRAFTED WITH OUR HANDS</p>
+        <div class="projects-grid">
+            <div class="project-card animate-scale delay-1">
+                <img src="Hospital.png" alt="救急医療プロジェクト">
+                <div class="project-overlay">
+                    <h3>インド移動診療車プロジェクト</h3>
+                    <p>農村部への医療アクセス向上</p>
+                </div>
+            </div>
+            <div class="project-card animate-scale delay-2">
+                <img src="kaigomura.png" alt="介護村構想">
+                <div class="project-overlay">
+                    <h3>介護村プロジェクト</h3>
+                    <p>日本の新しい介護コミュニティ</p>
+                </div>
+            </div>
+            <div class="project-card animate-scale delay-3">
+                <img src="Sustainable.png" alt="サステナブル建築">
+                <div class="project-overlay">
+                    <h3>サステナブル建築</h3>
+                    <p>環境に優しい建築設計</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2 class="animate-on-scroll">CONTACT <span class="highlight">US</span></h2>
+        <p class="animate-on-scroll delay-1">プロジェクトへのご参加、パートナーシップ、採用に関するお問い合わせなど、お気軽にご連絡ください。</p>
+        <a href="contact.html" class="contact-btn animate-on-scroll delay-2">お問い合わせ</a>
+        
+        <div class="contact-info-grid animate-on-scroll delay-3">
+            <div class="contact-location">
+                <h3>JAPAN</h3>
+                <p>JmAT Japan合同会社<br>
+                〒103-0004<br>
+                東京都中央区東日本橋3-3-17<br>
+                <a href="tel:03-1234-5678">03-1234-5678</a><br>
+                <a href="/cdn-cgi/l/email-protection#5a33343c351a30373b2e74302a"><span class="__cf_email__" data-cfemail="2d44434b426d47404c5903475d">[email&#160;protected]</span></a></p>
+            </div>
+            <div class="contact-location">
+                <h3>GLOBAL</h3>
+                <p>インド・アメリカ・日本を拠点に<br>
+                医療と建築、エンタメの力で<br>
+                世界中の「届かない」を「届く」に変える<br>
+                活動を展開しています。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>企業情報</h3>
+                <ul>
+                    <li><a href="about-company.html">会社概要</a></li>
+                    <li><a href="about-message.html">代表挨拶</a></li>
+                    <li><a href="about-philosophy.html">企業理念</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>サービス</h3>
+                <ul>
+                    <li><a href="service-emergency.html">寄付型CF</a></li>
+                    <li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li>
+                    <li><a href="service-cosmetics.html">コスメティック事業</a></li>
+                    <li><a href="service-construction.html">建築・まちづくり</a></li>
+                    <li><a href="service-figurine.html">エンタメ事業</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>情報</h3>
+                <ul>
+                    <li><a href="news.html">お知らせ</a></li>
+                    <li><a href="recruit.html">採用情報</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#4d24232b220d27202c3963273d"><span class="__cf_email__" data-cfemail="c0a9aea6af80aaada1b4eeaab0">[email&#160;protected]</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div class="mascot-container">
+        <div class="mascot-bubble">何かお困りですか？🩺</div>
+        <img src="mascot.png" alt="JmATマスコット" class="mascot">
     </div>
-  );
-};
 
-export default DreamEquityPlatform;
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // ヘッダースクロール効果
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        // スクロールアニメーション
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('animated');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right, .animate-scale').forEach(el => observer.observe(el));
+
+        // マスコットメッセージ
+        const messages = ['何かお困りですか？🩺', '一緒�
