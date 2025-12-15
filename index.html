@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ELITE SECRETARY | 超VIP専属秘書サービス</title>
-    <meta name="description" content="24時間365日、世界中どこでも対応する超ハイスペック専属秘書サービス。厳選された10名限定の特別なサポートをご提供。">
+    <meta name="description" content="24時間365日、世界中どこでも対応する超ハイスペック専属秘書サービス。厳選されたエリート秘書があなたをサポート。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,7 +19,6 @@
             --primary-gold: #B8860B;
             --primary-bronze: #CD853F;
             --gradient-primary: linear-gradient(135deg, #B8860B 0%, #D4A84B 50%, #CD853F 100%);
-            --gradient-hero: linear-gradient(180deg, #FAF7F2 0%, #F5F0E8 50%, #EDE5D8 100%);
             --gradient-accent: linear-gradient(135deg, #B8860B 0%, #D4A84B 100%);
             --beige-light: #F5F0E8;
             --beige-medium: #E8DFD0;
@@ -29,7 +28,6 @@
             --text-dark: #2C2318;
             --text-gray: #6B5D4D;
             --text-light: #8B7D6B;
-            --bg-light: #FAF7F2;
             --border-light: #E8DFD0;
         }
 
@@ -41,12 +39,7 @@
             font-family: 'Noto Sans JP', sans-serif;
             color: var(--text-dark);
             line-height: 1.8;
-            overflow-x: hidden;
             background: var(--cream);
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
         }
 
         .gradient-text {
@@ -56,26 +49,44 @@
             background-clip: text;
         }
 
-        /* Navigation */
-        .navbar {
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--beige-medium);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 2rem;
-            transition: all 0.5s ease;
         }
 
-        .navbar.scrolled {
-            background: rgba(250, 247, 242, 0.98);
-            box-shadow: 0 4px 20px rgba(44, 35, 24, 0.08);
-            backdrop-filter: blur(10px);
+        .header-top {
+            background: var(--cream);
+            padding: 0.5rem 2rem;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            border-bottom: 1px solid var(--beige-medium);
         }
 
-        .navbar-container {
+        .header-top a {
+            color: var(--text-gray);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .header-top a:hover {
+            color: var(--primary-gold);
+        }
+
+        .header-main {
             max-width: 1280px;
             margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -89,19 +100,18 @@
         }
 
         .logo-icon {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             background: var(--gradient-accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid rgba(184, 134, 11, 0.2);
         }
 
         .logo-icon svg {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             stroke: white;
             fill: none;
         }
@@ -109,390 +119,175 @@
         .logo-text {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: var(--text-dark);
-            transition: color 0.3s;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
         }
 
         .logo-subtitle {
-            font-size: 0.625rem;
+            font-size: 0.65rem;
             color: var(--text-gray);
-            display: block;
-            transition: color 0.3s;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.2em;
         }
 
-        .nav-links {
+        .nav-main {
             display: flex;
-            gap: 2.5rem;
-            list-style: none;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .nav-links a {
-            color: var(--text-gray);
+        .nav-main a {
+            padding: 0.75rem 1.25rem;
             text-decoration: none;
-            font-size: 0.8rem;
+            color: var(--text-dark);
+            font-size: 0.875rem;
             font-weight: 500;
-            letter-spacing: 0.1em;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-gold);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--primary-gold);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            padding: 0.75rem 1.5rem;
-            background: var(--gradient-accent);
-            color: white !important;
-            border-radius: 50px;
-            font-size: 0.75rem !important;
-            letter-spacing: 0.05em !important;
-        }
-
-        .nav-cta:hover {
-            box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
-        }
-
-        .nav-cta::after {
-            display: none !important;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .mobile-menu-btn span {
-            width: 24px;
-            height: 2px;
-            background: var(--text-dark);
+            border-radius: 4px;
             transition: all 0.3s;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: var(--gradient-hero);
+        .nav-main a:hover {
+            background: var(--beige-light);
+            color: var(--primary-gold);
+        }
+
+        .nav-buttons {
             display: flex;
-            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-apply {
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-apply-men {
+            background: var(--primary-gold);
+            color: white;
+        }
+
+        .btn-apply-women {
+            background: var(--primary-bronze);
+            color: white;
+        }
+
+        .btn-apply:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 8rem 2rem 5rem;
+            background: linear-gradient(180deg, white 0%, var(--cream) 100%);
+            text-align: center;
             position: relative;
             overflow: hidden;
-            padding: 2rem;
         }
 
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8860B' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .hero-bg-image {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 55%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&auto=format&fit=crop') center/cover;
-            opacity: 0.15;
-            mask-image: linear-gradient(to left, rgba(0,0,0,0.6), transparent);
-            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.6), transparent);
-        }
-
-        .hero-circle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-        }
-
-        .hero-circle-1 {
-            width: 500px;
-            height: 500px;
-            background: var(--primary-gold);
-            top: -150px;
-            left: -150px;
-        }
-
-        .hero-circle-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--primary-bronze);
-            bottom: 10%;
-            left: 30%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
-        }
-
-        .hero-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 10;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8860B' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         .hero-content {
-            max-width: 600px;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            display: inline-block;
             background: rgba(184, 134, 11, 0.1);
             border: 1px solid rgba(184, 134, 11, 0.3);
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.5rem;
             border-radius: 50px;
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease forwards;
-            opacity: 0;
-        }
-
-        .hero-badge span {
+            font-size: 0.8rem;
             color: var(--primary-gold);
-            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
         }
 
         .hero-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 1rem;
-            line-height: 1.2;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-            opacity: 0;
-            letter-spacing: 0.02em;
+            line-height: 1.3;
         }
 
         .hero-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            color: var(--primary-gold);
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-            opacity: 0;
-            letter-spacing: 0.2em;
-        }
-
-        .hero-desc {
+            font-size: 1.1rem;
             color: var(--text-gray);
-            font-size: 1rem;
             margin-bottom: 2.5rem;
-            animation: fadeInUp 0.8s ease 0.6s forwards;
-            opacity: 0;
-        }
-
-        .hero-features {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 0.8s ease 0.8s forwards;
-            opacity: 0;
-        }
-
-        .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-gray);
-            font-size: 0.875rem;
-        }
-
-        .hero-feature svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--primary-gold);
-            fill: none;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
+            justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 1s forwards;
-            opacity: 0;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
         }
 
         .btn {
             padding: 1rem 2.5rem;
-            border-radius: 50px;
+            border-radius: 4px;
             font-weight: 600;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
+            font-size: 0.9rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s;
-            cursor: pointer;
             border: none;
+            cursor: pointer;
         }
 
         .btn-primary {
-            background: var(--gradient-accent);
+            background: var(--primary-gold);
             color: white;
         }
 
-        .btn-primary:hover {
-            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.4);
-            transform: translateY(-2px);
-        }
-
         .btn-secondary {
-            background: transparent;
-            color: var(--text-dark);
-            border: 1px solid rgba(184, 134, 11, 0.5);
+            background: var(--primary-bronze);
+            color: white;
         }
 
-        .btn-secondary:hover {
-            background: rgba(184, 134, 11, 0.1);
-            border-color: var(--primary-gold);
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.3);
         }
 
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-card {
-            background: white;
-            box-shadow: 0 20px 60px rgba(44, 35, 24, 0.1);
-            border: 1px solid var(--beige-medium);
-            border-radius: 2rem;
-            padding: 2.5rem;
-            animation: fadeInUp 0.8s ease 0.6s forwards;
-            opacity: 0;
-        }
-
-        .hero-card-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.875rem;
-            color: var(--primary-gold);
-            letter-spacing: 0.2em;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-card-price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-card-price span {
-            font-size: 1rem;
-            color: var(--text-gray);
-        }
-
-        .hero-card-note {
+        .hero-note {
+            margin-top: 1.5rem;
             font-size: 0.75rem;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
+            color: var(--text-light);
         }
 
-        .hero-card-features {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        .hero-image {
+            margin-top: 3rem;
+            position: relative;
         }
 
-        .hero-card-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text-gray);
-            font-size: 0.875rem;
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 30px 60px rgba(44, 35, 24, 0.15);
         }
 
-        .hero-card-feature svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--primary-gold);
-            fill: none;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator div {
-            width: 24px;
-            height: 40px;
-            border: 1px solid rgba(184, 134, 11, 0.4);
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            padding-top: 8px;
-        }
-
-        .scroll-indicator div::after {
-            content: '';
-            width: 3px;
-            height: 10px;
-            background: var(--primary-gold);
-            border-radius: 2px;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* Sections Common */
+        /* Section Common */
         section {
-            padding: 7rem 2rem;
+            padding: 5rem 2rem;
         }
 
         .container {
@@ -502,28 +297,20 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
-        .section-label {
-            color: var(--primary-gold);
-            letter-spacing: 0.3em;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .section-heading {
+        .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
             font-weight: 700;
-            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
         }
 
         .section-desc {
             color: var(--text-gray);
             max-width: 600px;
-            margin: 1.5rem auto 0;
+            margin: 0 auto;
         }
 
         /* About Section */
@@ -531,11 +318,24 @@
             background: white;
         }
 
-        .about-grid {
+        .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            gap: 4rem;
             align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
         }
 
         .about-image {
@@ -544,283 +344,308 @@
 
         .about-image img {
             width: 100%;
-            border-radius: 1.5rem;
-            box-shadow: 0 30px 60px rgba(44, 35, 24, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(44, 35, 24, 0.1);
         }
 
-        .about-image-frame {
+        .demo-link {
             position: absolute;
-            top: -1.5rem;
-            left: -1.5rem;
-            right: 1.5rem;
-            bottom: 1.5rem;
-            border: 2px solid var(--primary-gold);
-            border-radius: 1.5rem;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .about-content h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-content p {
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .about-list-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .about-list-item svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--primary-gold);
-            fill: none;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .about-list-item p {
-            margin: 0;
-        }
-
-        /* Service Section */
-        .service {
-            background: var(--beige-light);
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            border: 1px solid var(--beige-medium);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(184, 134, 11, 0.1);
-            border-color: var(--primary-gold);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1), rgba(205, 133, 63, 0.1));
-            border: 1px solid rgba(184, 134, 11, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
+            bottom: -1rem;
+            right: -1rem;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.3);
             transition: all 0.3s;
         }
 
-        .service-card:hover .service-icon {
-            background: var(--gradient-accent);
-            border-color: transparent;
+        .demo-link:hover {
+            transform: translateY(-3px);
         }
 
-        .service-icon svg {
-            width: 36px;
-            height: 36px;
-            stroke: var(--primary-gold);
-            fill: none;
-            transition: stroke 0.3s;
-        }
-
-        .service-card:hover .service-icon svg {
-            stroke: white;
-        }
-
-        .service-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .service-desc {
-            color: var(--text-gray);
-            font-size: 0.875rem;
-        }
-
-        /* Secretary Section - Now Light */
-        .secretary {
+        /* Secretary Members Section */
+        .members {
             background: var(--cream);
-            position: relative;
-            overflow: hidden;
         }
 
-        .secretary::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8860B' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .secretary-grid {
+        .members-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
+            gap: 1.5rem;
         }
 
-        .secretary-card {
+        .member-card {
             background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
             border: 1px solid var(--beige-medium);
-            border-radius: 1.5rem;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .secretary-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 20px 50px rgba(184, 134, 11, 0.12);
-        }
-
-        .secretary-image {
-            height: 280px;
-            overflow: hidden;
+            transition: all 0.3s;
             position: relative;
         }
 
-        .secretary-image img {
+        .member-card:hover {
+            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.12);
+            border-color: var(--primary-gold);
+        }
+
+        .member-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            filter: blur(12px);
+            transform: scale(1.1);
         }
 
-        .secretary-card:hover .secretary-image img {
-            transform: scale(1.05);
-        }
-
-        .secretary-image::after {
-            content: '';
+        .member-lock {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(250, 247, 242, 0.9), transparent 50%);
-        }
-
-        .secretary-content {
-            padding: 1.5rem;
-        }
-
-        .secretary-role {
-            font-size: 0.75rem;
-            color: var(--primary-gold);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .secretary-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .secretary-spec {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-        }
-
-        .secretary-skills {
+            background: rgba(44, 35, 24, 0.4);
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
 
-        .secretary-skill {
-            background: rgba(184, 134, 11, 0.1);
-            border: 1px solid rgba(184, 134, 11, 0.2);
+        .member-lock svg {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 0.5rem;
+            stroke: white;
+            fill: none;
+        }
+
+        .member-lock span {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        .member-content {
+            padding: 1rem;
+        }
+
+        .member-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .member-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .member-date {
+            color: var(--text-light);
+        }
+
+        .member-area {
             color: var(--primary-gold);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
+            font-weight: 500;
         }
 
-        /* Flow Section */
-        .flow {
-            background: white;
-        }
-
-        .flow-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-
-        .flow-card {
-            background: var(--beige-light);
-            border: 1px solid var(--beige-medium);
-            border-radius: 1.5rem;
-            padding: 2rem;
+        .view-all-link {
             text-align: center;
-            position: relative;
+            margin-top: 2rem;
+        }
+
+        .view-all-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--primary-gold);
+            border-radius: 4px;
             transition: all 0.3s;
         }
 
-        .flow-card:hover {
-            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.1);
+        .view-all-link a:hover {
+            background: var(--primary-gold);
+            color: white;
         }
 
-        .flow-card::after {
-            content: '→';
-            position: absolute;
-            right: -1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary-gold);
-            font-size: 1.5rem;
+        /* Features Grid */
+        .features {
+            background: white;
         }
 
-        .flow-card:last-child::after {
-            display: none;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
-        .flow-number {
+        .feature-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--cream);
+            border-radius: 1rem;
+            border: 1px solid var(--beige-medium);
+            align-items: center;
+        }
+
+        .feature-card.reverse {
+            direction: rtl;
+        }
+
+        .feature-card.reverse > * {
+            direction: ltr;
+        }
+
+        .feature-image img {
+            width: 100%;
+            border-radius: 0.5rem;
+        }
+
+        .feature-content h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-content p {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .feature-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Target Sections */
+        .targets {
+            background: var(--cream);
+        }
+
+        .targets-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .target-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--beige-medium);
+            transition: all 0.3s;
+        }
+
+        .target-card:hover {
+            box-shadow: 0 20px 50px rgba(184, 134, 11, 0.1);
+        }
+
+        .target-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .target-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .target-content {
+            padding: 2rem;
+        }
+
+        .target-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
-        .flow-title {
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        .target-content p {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
         }
 
-        .flow-desc {
-            color: var(--text-gray);
-            font-size: 0.8rem;
+        .target-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .target-link:hover {
+            text-decoration: underline;
+        }
+
+        /* News Section */
+        .news {
+            background: white;
+        }
+
+        .news-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--beige-medium);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+        }
+
+        .news-item:hover {
+            background: var(--cream);
+            margin: 0 -1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .news-date {
+            flex-shrink: 0;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            width: 100px;
+        }
+
+        .news-title {
+            font-weight: 500;
         }
 
         /* Pricing Section */
@@ -837,21 +662,16 @@
         .pricing-card {
             background: white;
             border: 1px solid var(--beige-medium);
-            border-radius: 2rem;
-            padding: 3rem 2rem;
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.3s;
             position: relative;
         }
 
         .pricing-card.featured {
             border-color: var(--primary-gold);
-            transform: scale(1.05);
-            box-shadow: 0 25px 60px rgba(184, 134, 11, 0.15);
-        }
-
-        .pricing-card:hover {
-            box-shadow: 0 20px 50px rgba(184, 134, 11, 0.12);
+            box-shadow: 0 20px 50px rgba(184, 134, 11, 0.15);
         }
 
         .pricing-badge {
@@ -861,68 +681,76 @@
             transform: translateX(-50%);
             background: var(--gradient-accent);
             color: white;
-            padding: 0.5rem 1.5rem;
+            padding: 0.4rem 1rem;
             border-radius: 50px;
             font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 0.1em;
         }
 
         .pricing-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-        .pricing-desc {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-        }
-
         .pricing-price {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            margin: 1rem 0;
         }
 
         .pricing-unit {
             font-size: 0.8rem;
             color: var(--text-gray);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .pricing-features {
             text-align: left;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .pricing-feature {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--beige-medium);
-            font-size: 0.875rem;
-        }
-
-        .pricing-feature:last-child {
-            border-bottom: none;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--beige-light);
         }
 
         .pricing-feature svg {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             stroke: var(--primary-gold);
             fill: none;
-            flex-shrink: 0;
         }
 
         .pricing-btn {
             width: 100%;
-            justify-content: center;
+            padding: 0.875rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .pricing-btn-primary {
+            background: var(--primary-gold);
+            color: white;
+        }
+
+        .pricing-btn-secondary {
+            background: transparent;
+            color: var(--primary-gold);
+            border: 1px solid var(--primary-gold);
+        }
+
+        .pricing-btn:hover {
+            opacity: 0.9;
         }
 
         /* FAQ Section */
@@ -938,23 +766,19 @@
         .faq-item {
             background: white;
             border: 1px solid var(--beige-medium);
-            border-radius: 1rem;
-            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
             overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .faq-item:hover {
-            border-color: var(--primary-gold);
         }
 
         .faq-question {
-            padding: 1.5rem 2rem;
+            padding: 1.25rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .faq-question svg {
@@ -970,7 +794,7 @@
         }
 
         .faq-answer {
-            padding: 0 2rem 1.5rem;
+            padding: 0 1.5rem 1.25rem;
             color: var(--text-gray);
             font-size: 0.9rem;
             display: none;
@@ -980,43 +804,25 @@
             display: block;
         }
 
-        /* CTA Section - Now Light */
+        /* CTA Section */
         .cta {
-            background: linear-gradient(180deg, var(--beige-light) 0%, var(--cream-dark) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8860B' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .cta .hero-circle {
-            opacity: 0.08;
-        }
-
-        .cta-content {
+            background: linear-gradient(135deg, var(--beige-light) 0%, var(--cream-dark) 100%);
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
         }
 
         .cta h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
+            margin-bottom: 1rem;
         }
 
         .cta p {
             color: var(--text-gray);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-buttons {
@@ -1026,62 +832,58 @@
             flex-wrap: wrap;
         }
 
-        .cta-note {
-            margin-top: 2rem;
-            font-size: 0.75rem;
-            color: var(--text-light);
-        }
-
-        /* Footer - Now Light */
+        /* Footer */
         footer {
             background: white;
             border-top: 1px solid var(--beige-medium);
-            color: var(--text-dark);
-            padding: 4rem 2rem 2rem;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+        .footer-main {
             max-width: 1280px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            padding-right: 2rem;
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .footer-desc {
+            font-size: 0.85rem;
             color: var(--text-gray);
-            font-size: 0.875rem;
             line-height: 1.8;
         }
 
-        .footer-title {
-            font-family: 'Cormorant Garamond', serif;
+        .footer-column h4 {
             font-size: 0.8rem;
             color: var(--primary-gold);
-            letter-spacing: 0.15em;
-            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .footer-links {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
         }
 
         .footer-links a {
+            font-size: 0.85rem;
             color: var(--text-gray);
             text-decoration: none;
-            font-size: 0.875rem;
             transition: color 0.3s;
         }
 
@@ -1091,7 +893,7 @@
 
         .footer-bottom {
             border-top: 1px solid var(--beige-medium);
-            padding-top: 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1107,59 +909,33 @@
         .footer-tagline {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            color: var(--primary-gold) !important;
-            letter-spacing: 0.05em;
+            color: var(--primary-gold);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-dark);
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content {
-                max-width: 100%;
-            }
-
-            .hero-features {
-                justify-content: center;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-visual {
+            .header-top {
                 display: none;
             }
 
-            .service-grid,
-            .secretary-grid,
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-
-            .flow-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .flow-card:nth-child(2)::after,
-            .flow-card:nth-child(4)::after {
-                display: none;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
+            .nav-main {
                 display: none;
             }
 
@@ -1167,27 +943,53 @@
                 display: flex;
             }
 
-            .about-grid {
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
                 grid-template-columns: 1fr;
             }
 
-            .service-grid,
-            .secretary-grid,
+            .feature-card {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card.reverse {
+                direction: ltr;
+            }
+
             .pricing-grid {
                 grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
             }
 
-            .flow-grid {
+            .footer-main {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
                 grid-template-columns: 1fr;
             }
 
-            .flow-card::after {
-                display: none;
+            .members-grid {
+                grid-template-columns: 1fr;
             }
 
-            .footer-grid {
+            .targets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
                 grid-template-columns: 1fr;
                 text-align: center;
+            }
+
+            .footer-brand {
+                padding-right: 0;
             }
 
             .footer-logo {
@@ -1197,413 +999,414 @@
             .footer-bottom {
                 flex-direction: column;
                 gap: 1rem;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="navbar-container">
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <a href="#login">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                会員ログイン
+            </a>
+            <a href="#contact">お問い合わせ</a>
+            <a href="#faq">よくある質問</a>
+        </div>
+        <div class="header-main">
             <a href="#" class="logo">
                 <div class="logo-icon">
                     <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </div>
                 <div>
-                    <span class="logo-text">ELITE SECRETARY</span>
-                    <span class="logo-subtitle">VIP CONCIERGE</span>
+                    <div class="logo-text">ELITE SECRETARY</div>
+                    <div class="logo-subtitle">VIP CONCIERGE SERVICE</div>
                 </div>
             </a>
-            
-            <ul class="nav-links">
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#service">SERVICE</a></li>
-                <li><a href="#secretary">SECRETARY</a></li>
-                <li><a href="#pricing">PRICING</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
-            </ul>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <nav class="nav-main">
+                <a href="#members">秘書会員の紹介</a>
+                <a href="#pricing">料金について</a>
+                <a href="#service">サービス内容</a>
+                <a href="#about">私たちについて</a>
+            </nav>
+
+            <div class="nav-buttons">
+                <a href="#apply-men" class="btn-apply btn-apply-men">男性申込</a>
+                <a href="#apply-women" class="btn-apply btn-apply-women">女性申込</a>
+            </div>
+
+            <button class="mobile-menu-btn">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-bg-image"></div>
-        <div class="hero-circle hero-circle-1"></div>
-        <div class="hero-circle hero-circle-2"></div>
-        
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="#B8860B"/></svg>
-                    <span>10名限定 ・ 完全審査制</span>
-                </div>
-                <h1 class="hero-title">超VIP専属秘書<br><span class="gradient-text">サービス</span></h1>
-                <p class="hero-subtitle section-title">Your Time, Our Priority.</p>
-                <p class="hero-desc">24時間365日、世界中どこでも対応する超ハイスペック秘書チームをご提供。あなたの貴重な時間を最大化し、人生を変えるサポートをお約束します。</p>
-                
-                <div class="hero-features">
-                    <div class="hero-feature">
-                        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>24時間365日対応</span>
-                    </div>
-                    <div class="hero-feature">
-                        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                        <span>世界対応</span>
-                    </div>
-                    <div class="hero-feature">
-                        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <span>機密保持完備</span>
-                    </div>
-                </div>
-
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        無料相談を予約
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#service" class="btn btn-secondary">サービス詳細</a>
-                </div>
+        <div class="hero-content">
+            <div class="hero-badge">信頼度 / 満足度 / 支持率 No.1</div>
+            <h1 class="hero-title">人生は短い、<br><span class="gradient-text">最高のサポート</span>と共に</h1>
+            <p class="hero-subtitle">厳選された超VIP専属秘書が、24時間365日あなたの人生をサポートします。</p>
+            <div class="hero-buttons">
+                <a href="#apply-men" class="btn btn-primary">男性会員 申込みはこちら</a>
+                <a href="#apply-women" class="btn btn-secondary">女性秘書 申込みはこちら</a>
             </div>
-
-            <div class="hero-visual">
-                <div class="hero-card">
-                    <p class="hero-card-title">ANNUAL MEMBERSHIP</p>
-                    <p class="hero-card-price">¥100,000,000<span>〜</span></p>
-                    <p class="hero-card-note">年会費 / 税別</p>
-                    <div class="hero-card-features">
-                        <div class="hero-card-feature">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>専属秘書2名体制</span>
-                        </div>
-                        <div class="hero-card-feature">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>世界中どこでも同行可能</span>
-                        </div>
-                        <div class="hero-card-feature">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>医療チーム連携</span>
-                        </div>
-                        <div class="hero-card-feature">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>セキュリティ体制完備</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <div></div>
+            <p class="hero-note">※完全審査制・18歳未満の方はご登録できません。</p>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section class="about" id="about">
         <div class="container">
-            <div class="about-grid">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2><span class="gradient-text">ELITE SECRETARY</span>とは</h2>
+                    <p>2020年創業。日本最高峰の専属秘書サービスを提供するELITE SECRETARYは、厳選された超ハイスペック秘書との安心・上質なマッチングをお届けします。</p>
+                    <p>ご入会から最短1日以内に会員ページのご利用が可能に。秘書会員のプロフィール写真はもちろん、インタビュー動画やスキル詳細、スケジュール機能で秘書の予定もチェックできます。</p>
+                    <p>コーディネーターがあなたの要望に合わせた最適な秘書を探し出し、セッティングいたします。</p>
+                </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&auto=format&fit=crop" alt="Elite Secretary">
-                    <div class="about-image-frame"></div>
-                </div>
-                <div class="about-content">
-                    <p class="section-label section-title">ABOUT US</p>
-                    <h2><span class="gradient-text">最高峰の秘書サービス</span>で<br>あなたの人生を最適化</h2>
-                    <p>ELITE SECRETARYは、日本のトップエグゼクティブのために設計された、最高級の専属秘書サービスです。単なるスケジュール管理にとどまらず、あなたの人生全体をサポートするパートナーとして機能します。</p>
-                    <p>厳選された秘書は、語学力・ビジネススキル・ホスピタリティを兼ね備えた超一流の人材のみ。完全な機密保持体制のもと、ビジネスからプライベートまで、あらゆるニーズにお応えします。</p>
-                    
-                    <div class="about-list">
-                        <div class="about-list-item">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <p><strong>トップ1%の人材</strong> - 東大・京大卒、海外MBA保持者など</p>
-                        </div>
-                        <div class="about-list-item">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <p><strong>3ヶ国語以上対応</strong> - 日英+α言語でグローバル対応</p>
-                        </div>
-                        <div class="about-list-item">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <p><strong>NDA完全締結</strong> - 機密保持契約による安心体制</p>
-                        </div>
-                    </div>
+                    <img src="profile1.png" alt="About">
+                    <a href="#demo" class="demo-link">会員サイトの<br>デモ版を試す</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Service Section -->
-    <section class="service" id="service">
+    <!-- Members -->
+    <section class="members" id="members">
         <div class="container">
             <div class="section-header">
-                <p class="section-label section-title">SERVICE</p>
-                <h2 class="section-heading"><span class="gradient-text">サービス内容</span></h2>
-                <p class="section-desc">あなたの時間を最大化し、人生の質を向上させる多彩なサポートをご提供します。</p>
+                <h2 class="section-title"><span class="gradient-text">秘書会員の紹介</span></h2>
+                <p class="section-desc">厳しい選考を通過した、トップ1%の人材のみをご紹介しています。</p>
             </div>
-            
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="profile1.png" alt="Secretary">
+                        <div class="member-lock">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span>会員専用</span>
+                        </div>
                     </div>
-                    <h3 class="service-title">スケジュール管理</h3>
-                    <p class="service-desc">会議・出張・プライベートの予定を完璧に管理。最適なタイムマネジメントをご提案。</p>
+                    <div class="member-content">
+                        <h3 class="member-title">【東京】知性と美貌を兼ね備えた逸材</h3>
+                        <div class="member-meta">
+                            <span class="member-date">2025年12月15日</span>
+                            <span class="member-area">東京</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="profile2.png" alt="Secretary">
+                        <div class="member-lock">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span>会員専用</span>
+                        </div>
                     </div>
-                    <h3 class="service-title">旅行・出張手配</h3>
-                    <p class="service-desc">プライベートジェット、最高級ホテル、レストラン予約まで一括手配。</p>
+                    <div class="member-content">
+                        <h3 class="member-title">【大阪】3ヶ国語対応のエリート秘書</h3>
+                        <div class="member-meta">
+                            <span class="member-date">2025年12月14日</span>
+                            <span class="member-area">大阪</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="profile3.png" alt="Secretary">
+                        <div class="member-lock">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span>会員専用</span>
+                        </div>
                     </div>
-                    <h3 class="service-title">タスク代行</h3>
-                    <p class="service-desc">書類作成、リサーチ、各種手続きなど、あらゆるタスクを代行。</p>
+                    <div class="member-content">
+                        <h3 class="member-title">【福岡】元外資系金融のプロフェッショナル</h3>
+                        <div class="member-meta">
+                            <span class="member-date">2025年12月13日</span>
+                            <span class="member-area">福岡</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="profile4.png" alt="Secretary">
+                        <div class="member-lock">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span>会員専用</span>
+                        </div>
                     </div>
-                    <h3 class="service-title">通訳・翻訳</h3>
-                    <p class="service-desc">ビジネスミーティング、契約書翻訳、同時通訳など多言語対応。</p>
+                    <div class="member-content">
+                        <h3 class="member-title">【名古屋】Harvard MBA保持者</h3>
+                        <div class="member-meta">
+                            <span class="member-date">2025年12月12日</span>
+                            <span class="member-area">名古屋</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="profile5.png" alt="Secretary">
+                        <div class="member-lock">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span>会員専用</span>
+                        </div>
                     </div>
-                    <h3 class="service-title">ライフスタイル管理</h3>
-                    <p class="service-desc">健康管理、家族サポート、記念日手配など日常生活を全面サポート。</p>
+                    <div class="member-content">
+                        <h3 class="member-title">【横浜】国際会議通訳のスペシャリスト</h3>
+                        <div class="member-meta">
+                            <span class="member-date">2025年12月11日</span>
+                            <span class="member-area">横浜</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="profile6.png" alt="Secretary">
+                        <div class="member-lock">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span>会員専用</span>
+                        </div>
                     </div>
-                    <h3 class="service-title">セキュリティ連携</h3>
-                    <p class="service-desc">警護チーム、医療チームとの連携で安全を確保。緊急時対応も万全。</p>
+                    <div class="member-content">
+                        <h3 class="member-title">【札幌】元大手商社の敏腕秘書</h3>
+                        <div class="member-meta">
+                            <span class="member-date">2025年12月10日</span>
+                            <span class="member-area">札幌</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-all-link">
+                <a href="#login">
+                    一覧を見る（ログインが必要です）
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="service">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="profile2.png" alt="Feature">
+                    </div>
+                    <div class="feature-content">
+                        <h3>専属コーディネーター</h3>
+                        <p>登録秘書は500名以上。その中からあなたの要望に沿った最適な秘書を、専任コーディネーターが探し出しマッチングいたします。</p>
+                        <a href="#" class="feature-link">詳細はこちら →</a>
+                    </div>
+                </div>
+
+                <div class="feature-card reverse">
+                    <div class="feature-image">
+                        <img src="profile3.png" alt="Feature">
+                    </div>
+                    <div class="feature-content">
+                        <h3>トライアルでお試し体験</h3>
+                        <p>「入会前に試したい」「不安がある」というお声にお応えして、入会金不要のトライアルプランをご用意しています。</p>
+                        <a href="#" class="feature-link">詳細はこちら →</a>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="profile4.png" alt="Feature">
+                    </div>
+                    <div class="feature-content">
+                        <h3>24時間365日対応</h3>
+                        <p>世界中どこにいても、いつでもサポートを受けられます。出張先での急な依頼にも対応いたします。</p>
+                        <a href="#" class="feature-link">詳細はこちら →</a>
+                    </div>
+                </div>
+
+                <div class="feature-card reverse">
+                    <div class="feature-image">
+                        <img src="profile5.png" alt="Feature">
+                    </div>
+                    <div class="feature-content">
+                        <h3>入会キャンペーン</h3>
+                        <p>ご入会をご検討いただいている方に、お得なキャンペーン情報をご案内しています。</p>
+                        <a href="#" class="feature-link">詳細はこちら →</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Secretary Section -->
-    <section class="secretary" id="secretary">
+    <!-- Targets -->
+    <section class="targets">
+        <div class="container">
+            <div class="targets-grid">
+                <div class="target-card">
+                    <div class="target-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop" alt="For Men">
+                    </div>
+                    <div class="target-content">
+                        <h3>最高のサポートを求める紳士の方へ</h3>
+                        <p>出張先でのサポートも欲しい、数多くの秘書の中からベストマッチングな出会いが欲しい。そんな願いを叶えます。入会の流れや料金など詳しくご紹介。</p>
+                        <a href="#" class="target-link">
+                            詳細はこちら
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="target-card">
+                    <div class="target-image">
+                        <img src="profile6.png" alt="For Women">
+                    </div>
+                    <div class="target-content">
+                        <h3>キャリアを活かしたい女性の方へ</h3>
+                        <p>日本で一番登録数が多いことには理由があります。あなたもELITE SECRETARYの秘書会員になりませんか？登録の流れや待遇など詳しくご紹介。</p>
+                        <a href="#" class="target-link">
+                            詳細はこちら
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News -->
+    <section class="news">
         <div class="container">
             <div class="section-header">
-                <p class="section-label section-title">OUR TEAM</p>
-                <h2 class="section-heading"><span class="gradient-text">厳選された秘書陣</span></h2>
-                <p class="section-desc">トップ1%の人材のみを採用。厳しい選考を通過したプロフェッショナルがあなたをサポートします。</p>
+                <h2 class="section-title"><span class="gradient-text">インフォメーション</span></h2>
             </div>
-            
-            <div class="secretary-grid">
-                <div class="secretary-card">
-                    <div class="secretary-image">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop" alt="Secretary">
-                    </div>
-                    <div class="secretary-content">
-                        <p class="secretary-role">CHIEF SECRETARY</p>
-                        <h3 class="secretary-name">山田 花子</h3>
-                        <p class="secretary-spec">東京大学卒 / Harvard MBA / 秘書歴12年</p>
-                        <div class="secretary-skills">
-                            <span class="secretary-skill">日本語</span>
-                            <span class="secretary-skill">英語</span>
-                            <span class="secretary-skill">フランス語</span>
-                            <span class="secretary-skill">M&A</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="secretary-card">
-                    <div class="secretary-image">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&auto=format&fit=crop" alt="Secretary">
-                    </div>
-                    <div class="secretary-content">
-                        <p class="secretary-role">EXECUTIVE SECRETARY</p>
-                        <h3 class="secretary-name">佐藤 美咲</h3>
-                        <p class="secretary-spec">慶應義塾大学卒 / 外資系金融出身 / 秘書歴8年</p>
-                        <div class="secretary-skills">
-                            <span class="secretary-skill">日本語</span>
-                            <span class="secretary-skill">英語</span>
-                            <span class="secretary-skill">中国語</span>
-                            <span class="secretary-skill">IR</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="news-list">
+                <a href="#" class="news-item">
+                    <span class="news-date">2025年12月11日</span>
+                    <span class="news-title">年末年始休業期間のお知らせ（2025年度）</span>
+                </a>
+                <a href="#" class="news-item">
+                    <span class="news-date">2025年12月5日</span>
+                    <span class="news-title">新規秘書会員登録キャンペーン開始のお知らせ</span>
+                </a>
+                <a href="#" class="news-item">
+                    <span class="news-date">2025年11月20日</span>
+                    <span class="news-title">会員サイトリニューアルのお知らせ</span>
+                </a>
+                <a href="#" class="news-item">
+                    <span class="news-date">2025年11月10日</span>
+                    <span class="news-title">大阪支店オープンのお知らせ</span>
+                </a>
+                <a href="#" class="news-item">
+                    <span class="news-date">2025年10月25日</span>
+                    <span class="news-title">【重要】会員規約変更について</span>
+                </a>
+            </div>
 
-                <div class="secretary-card">
-                    <div class="secretary-image">
-                        <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&auto=format&fit=crop" alt="Secretary">
-                    </div>
-                    <div class="secretary-content">
-                        <p class="secretary-role">SENIOR SECRETARY</p>
-                        <h3 class="secretary-name">田中 麻衣</h3>
-                        <p class="secretary-spec">京都大学卒 / 元外交官 / 秘書歴10年</p>
-                        <div class="secretary-skills">
-                            <span class="secretary-skill">日本語</span>
-                            <span class="secretary-skill">英語</span>
-                            <span class="secretary-skill">アラビア語</span>
-                            <span class="secretary-skill">国際法</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="view-all-link">
+                <a href="#">
+                    一覧を見る
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Flow Section -->
-    <section class="flow">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label section-title">FLOW</p>
-                <h2 class="section-heading"><span class="gradient-text">ご利用の流れ</span></h2>
-            </div>
-            
-            <div class="flow-grid">
-                <div class="flow-card">
-                    <p class="flow-number gradient-text">01</p>
-                    <h4 class="flow-title">無料相談</h4>
-                    <p class="flow-desc">まずはお気軽にご相談ください。ニーズをヒアリングいたします。</p>
-                </div>
-
-                <div class="flow-card">
-                    <p class="flow-number gradient-text">02</p>
-                    <h4 class="flow-title">秘書マッチング</h4>
-                    <p class="flow-desc">ご要望に合わせて最適な秘書をご提案いたします。</p>
-                </div>
-
-                <div class="flow-card">
-                    <p class="flow-number gradient-text">03</p>
-                    <h4 class="flow-title">トライアル</h4>
-                    <p class="flow-desc">1ヶ月のトライアル期間で相性をご確認いただけます。</p>
-                </div>
-
-                <div class="flow-card">
-                    <p class="flow-number gradient-text">04</p>
-                    <h4 class="flow-title">本契約</h4>
-                    <p class="flow-desc">ご満足いただけましたら、年間契約へ移行いたします。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
+    <!-- Pricing -->
     <section class="pricing" id="pricing">
         <div class="container">
             <div class="section-header">
-                <p class="section-label section-title">PRICING</p>
-                <h2 class="section-heading"><span class="gradient-text">料金プラン</span></h2>
+                <h2 class="section-title"><span class="gradient-text">料金プラン</span></h2>
                 <p class="section-desc">ご利用頻度やニーズに合わせて、3つのプランをご用意しています。</p>
             </div>
-            
+
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3 class="pricing-name">STANDARD</h3>
-                    <p class="pricing-desc">月間80時間までの秘書サービス</p>
-                    <p class="pricing-price gradient-text">¥30M</p>
-                    <p class="pricing-unit">年会費（税別）</p>
-                    
+                    <div class="pricing-name">STANDARD</div>
+                    <div class="pricing-price gradient-text">¥30M</div>
+                    <div class="pricing-unit">年会費（税別）</div>
                     <div class="pricing-features">
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>専属秘書1名</span>
+                            専属秘書1名
                         </div>
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>平日9:00-21:00対応</span>
+                            平日9:00-21:00対応
                         </div>
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>国内出張同行可</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>基本タスク代行</span>
+                            国内出張同行可
                         </div>
                     </div>
-                    
-                    <a href="#contact" class="btn btn-secondary pricing-btn">お問い合わせ</a>
+                    <a href="#" class="pricing-btn pricing-btn-secondary">お問い合わせ</a>
                 </div>
 
                 <div class="pricing-card featured">
                     <span class="pricing-badge">MOST POPULAR</span>
-                    <h3 class="pricing-name">PREMIUM</h3>
-                    <p class="pricing-desc">24時間対応の専属秘書サービス</p>
-                    <p class="pricing-price gradient-text">¥100M</p>
-                    <p class="pricing-unit">年会費（税別）</p>
-                    
+                    <div class="pricing-name">PREMIUM</div>
+                    <div class="pricing-price gradient-text">¥100M</div>
+                    <div class="pricing-unit">年会費（税別）</div>
                     <div class="pricing-features">
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>専属秘書2名体制</span>
+                            専属秘書2名体制
                         </div>
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>24時間365日対応</span>
+                            24時間365日対応
                         </div>
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>世界中どこでも同行</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>医療チーム連携</span>
+                            世界中どこでも同行
                         </div>
                     </div>
-                    
-                    <a href="#contact" class="btn btn-primary pricing-btn">お問い合わせ</a>
+                    <a href="#" class="pricing-btn pricing-btn-primary">お問い合わせ</a>
                 </div>
 
                 <div class="pricing-card">
-                    <h3 class="pricing-name">ENTERPRISE</h3>
-                    <p class="pricing-desc">チーム体制での完全サポート</p>
-                    <p class="pricing-price gradient-text">¥200M〜</p>
-                    <p class="pricing-unit">年会費（税別）</p>
-                    
+                    <div class="pricing-name">ENTERPRISE</div>
+                    <div class="pricing-price gradient-text">¥200M〜</div>
+                    <div class="pricing-unit">年会費（税別）</div>
                     <div class="pricing-features">
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>専属チーム編成</span>
+                            専属チーム編成
                         </div>
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>24時間365日対応</span>
+                            セキュリティチーム
                         </div>
                         <div class="pricing-feature">
                             <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>セキュリティチーム</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>完全カスタマイズ</span>
+                            完全カスタマイズ
                         </div>
                     </div>
-                    
-                    <a href="#contact" class="btn btn-secondary pricing-btn">お問い合わせ</a>
+                    <a href="#" class="pricing-btn pricing-btn-secondary">お問い合わせ</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="container">
             <div class="section-header">
-                <p class="section-label section-title">FAQ</p>
-                <h2 class="section-heading"><span class="gradient-text">よくあるご質問</span></h2>
+                <h2 class="section-title"><span class="gradient-text">よくある質問</span></h2>
             </div>
-            
+
             <div class="faq-list">
                 <div class="faq-item active">
                     <div class="faq-question">
@@ -1611,7 +1414,7 @@
                         <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </div>
                     <div class="faq-answer">
-                        経営者、投資家、医師、弁護士、芸能関係者など、時間的価値の高い方々にご利用いただいております。全員が完全審査制となっており、反社会的勢力との関係がないことを確認しております。
+                        経営者、投資家、医師、弁護士など、時間的価値の高い方々にご利用いただいております。完全審査制で、反社会的勢力との関係がないことを確認しております。
                     </div>
                 </div>
 
@@ -1621,7 +1424,7 @@
                         <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </div>
                     <div class="faq-answer">
-                        採用率は応募者の1%未満です。学歴、語学力、実務経験に加え、人格・マナー・ホスピタリティを重視した厳しい選考を行っています。入社後も定期的な研修と評価を実施しています。
+                        採用率は応募者の1%未満です。学歴、語学力、実務経験に加え、人格・マナー・ホスピタリティを重視した厳しい選考を行っています。
                     </div>
                 </div>
 
@@ -1631,17 +1434,7 @@
                         <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </div>
                     <div class="faq-answer">
-                        全秘書との間で厳格なNDA（秘密保持契約）を締結しております。また、情報管理体制も万全を期しており、お客様のプライバシーを最大限保護いたします。
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>海外でも対応可能ですか？</span>
-                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                    </div>
-                    <div class="faq-answer">
-                        はい、PREMIUMプラン以上では世界中どこへでも同行が可能です。現地でのコーディネート、通訳、各種手配など、海外でも国内と同等のサポートをご提供いたします。
+                        全秘書との間で厳格なNDA（秘密保持契約）を締結しております。情報管理体制も万全を期しており、お客様のプライバシーを最大限保護いたします。
                     </div>
                 </div>
 
@@ -1655,83 +1448,87 @@
                     </div>
                 </div>
             </div>
+
+            <div class="view-all-link">
+                <a href="#">
+                    すべての質問を見る
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
-        <div class="hero-circle hero-circle-1" style="top: -100px; left: 20%;"></div>
-        <div class="hero-circle hero-circle-2" style="bottom: -100px; right: 20%; top: auto;"></div>
-        
+    <!-- CTA -->
+    <section class="cta">
         <div class="container">
-            <div class="cta-content">
-                <p class="section-label section-title">CONTACT</p>
-                <h2><span class="gradient-text">あなたの人生を</span><br>最適化しませんか？</h2>
-                <p>まずは無料相談から。専任コンサルタントがあなたのニーズをヒアリングし、最適なプランをご提案いたします。</p>
-                
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">
-                        無料相談を予約
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#" class="btn btn-secondary">資料請求</a>
-                </div>
-                
-                <p class="cta-note">※ご相談は完全予約制です。お申し込み後、担当者よりご連絡いたします。</p>
+            <h2><span class="gradient-text">あなたの人生を</span>最適化しませんか？</h2>
+            <p>まずは無料相談から。専任コンサルタントがあなたのニーズをヒアリングし、最適なプランをご提案いたします。</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">男性会員 申込みはこちら</a>
+                <a href="#" class="btn btn-secondary">女性秘書 申込みはこちら</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-grid">
-            <div>
+        <div class="footer-main">
+            <div class="footer-brand">
                 <div class="footer-logo">
                     <div class="logo-icon">
                         <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     </div>
                     <div>
-                        <span class="logo-text">ELITE SECRETARY</span>
-                        <span class="logo-subtitle">VIP CONCIERGE</span>
+                        <div class="logo-text">ELITE SECRETARY</div>
+                        <div class="logo-subtitle">VIP CONCIERGE SERVICE</div>
                     </div>
                 </div>
-                <p class="footer-desc">
-                    24時間365日、世界中どこでも対応する<br>
-                    超ハイスペック専属秘書サービス。<br>
-                    あなたの人生を最適化します。
-                </p>
+                <p class="footer-desc">24時間365日、世界中どこでも対応する超ハイスペック専属秘書サービス。あなたの人生を最適化します。</p>
             </div>
-            
-            <div>
-                <p class="footer-title">SERVICE</p>
+
+            <div class="footer-column">
+                <h4>男性の方へ</h4>
                 <ul class="footer-links">
-                    <li><a href="#about">サービス概要</a></li>
-                    <li><a href="#service">サービス内容</a></li>
-                    <li><a href="#secretary">秘書紹介</a></li>
-                    <li><a href="#pricing">料金プラン</a></li>
+                    <li><a href="#">ご入会申し込み</a></li>
+                    <li><a href="#">秘書会員の紹介</a></li>
+                    <li><a href="#">ご料金</a></li>
+                    <li><a href="#">システム</a></li>
+                    <li><a href="#">トライアル</a></li>
                 </ul>
             </div>
-            
-            <div>
-                <p class="footer-title">COMPANY</p>
+
+            <div class="footer-column">
+                <h4>女性の方へ</h4>
+                <ul class="footer-links">
+                    <li><a href="#">登録申し込み</a></li>
+                    <li><a href="#">入会のご案内</a></li>
+                    <li><a href="#">採用基準</a></li>
+                    <li><a href="#">登録の流れ</a></li>
+                    <li><a href="#">よくある質問</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>私たちについて</h4>
                 <ul class="footer-links">
                     <li><a href="#">会社概要</a></li>
+                    <li><a href="#">代表挨拶</a></li>
+                    <li><a href="#">ネットワーク</a></li>
                     <li><a href="#">採用情報</a></li>
-                    <li><a href="#">利用規約</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>サポート</h4>
+                <ul class="footer-links">
+                    <li><a href="#">お問い合わせ</a></li>
+                    <li><a href="#">よくある質問</a></li>
+                    <li><a href="#">会員ログイン</a></li>
                     <li><a href="#">プライバシーポリシー</a></li>
                 </ul>
             </div>
-            
-            <div>
-                <p class="footer-title">CONTACT</p>
-                <ul class="footer-links">
-                    <li><a href="#contact">無料相談</a></li>
-                    <li><a href="#">資料請求</a></li>
-                    <li><a href="#">お問い合わせ</a></li>
-                </ul>
-            </div>
         </div>
-        
+
         <div class="footer-bottom">
             <p>© 2025 ELITE SECRETARY. All rights reserved.</p>
             <p class="footer-tagline">"Your Time, Our Priority."</p>
@@ -1739,96 +1536,30 @@
     </footer>
 
     <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
         // FAQ toggle
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
                 const isActive = item.classList.contains('active');
-                
-                // Close all
                 document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                
-                // Open clicked if it wasn't active
                 if (!isActive) {
                     item.classList.add('active');
                 }
             });
         });
 
-        // Mobile menu
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.querySelector('.nav-links');
-        let isMenuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.right = '0';
-                navLinks.style.background = 'var(--cream)';
-                navLinks.style.padding = '1rem 2rem';
-                navLinks.style.boxShadow = '0 4px 20px rgba(44, 35, 24, 0.1)';
-            } else {
-                navLinks.style.display = '';
-                navLinks.style.flexDirection = '';
-                navLinks.style.position = '';
-                navLinks.style.top = '';
-                navLinks.style.left = '';
-                navLinks.style.right = '';
-                navLinks.style.background = '';
-                navLinks.style.padding = '';
-                navLinks.style.boxShadow = '';
-            }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card, .secretary-card, .flow-card, .pricing-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
