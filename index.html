@@ -495,27 +495,38 @@
         }
 
         .feature-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
             gap: 2rem;
-            padding: 2rem;
+            padding: 2.5rem;
             background: var(--cream);
             border-radius: 1rem;
             border: 1px solid var(--beige-medium);
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.1);
+            border-color: var(--primary-gold);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1), rgba(205, 133, 63, 0.1));
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .feature-card.reverse {
-            direction: rtl;
-        }
-
-        .feature-card.reverse > * {
-            direction: ltr;
-        }
-
-        .feature-image img {
-            width: 100%;
-            border-radius: 0.5rem;
+        .feature-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--primary-gold);
+            fill: none;
         }
 
         .feature-content h3 {
@@ -952,11 +963,8 @@
             }
 
             .feature-card {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-card.reverse {
-                direction: ltr;
+                flex-direction: column;
+                text-align: center;
             }
 
             .pricing-grid {
@@ -1204,8 +1212,8 @@
         <div class="container">
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-image">
-                        <img src="profile2.png" alt="Feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
                     <div class="feature-content">
                         <h3>専属コーディネーター</h3>
@@ -1214,9 +1222,9 @@
                     </div>
                 </div>
 
-                <div class="feature-card reverse">
-                    <div class="feature-image">
-                        <img src="profile3.png" alt="Feature">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
                     <div class="feature-content">
                         <h3>トライアルでお試し体験</h3>
@@ -1226,8 +1234,8 @@
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-image">
-                        <img src="profile4.png" alt="Feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
                     <div class="feature-content">
                         <h3>24時間365日対応</h3>
@@ -1236,9 +1244,9 @@
                     </div>
                 </div>
 
-                <div class="feature-card reverse">
-                    <div class="feature-image">
-                        <img src="profile5.png" alt="Feature">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                     </div>
                     <div class="feature-content">
                         <h3>入会キャンペーン</h3>
