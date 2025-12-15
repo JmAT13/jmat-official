@@ -89,7 +89,7 @@
         .header-nav {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 2.5rem;
         }
 
         .header-nav a {
@@ -407,20 +407,44 @@
             width: 100%;
             aspect-ratio: 3/4;
             background: var(--bg-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             overflow: hidden;
+            position: relative;
         }
 
         .people-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(30%);
-            transition: filter 0.5s;
+            filter: blur(15px) grayscale(50%);
+            transform: scale(1.1);
         }
 
-        .people-card:hover .people-image img {
-            filter: grayscale(0%);
+        .people-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .people-overlay svg {
+            width: 32px;
+            height: 32px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .people-initial {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.35rem;
+            color: var(--primary);
         }
 
         .people-role {
@@ -434,6 +458,40 @@
             font-size: 0.75rem;
             color: var(--text-light);
             line-height: 1.6;
+        }
+
+        .people-member-only {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .people-member-only svg {
+            width: 24px;
+            height: 24px;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .people-member-only p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .people-member-link {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: opacity 0.3s;
+        }
+
+        .people-member-link:hover {
+            opacity: 0.7;
         }
 
         .people-note {
@@ -717,6 +775,11 @@
                 gap: 1rem;
             }
 
+            .people-overlay svg {
+                width: 24px;
+                height: 24px;
+            }
+
             .concept-list {
                 flex-direction: column;
                 gap: 2rem;
@@ -748,6 +811,7 @@
         <a href="#" class="logo">PARTNER</a>
         <nav class="header-nav">
             <a href="#concept">CONCEPT</a>
+            <a href="#people">PEOPLE</a>
             <a href="#membership">MEMBERSHIP</a>
             <a href="#selection">SELECTION</a>
             <a href="#request">REQUEST</a>
@@ -857,6 +921,79 @@
                     <h4>守秘・信頼インフラ</h4>
                     <p>情報遮断設計、契約・法務体制、スタッフ選別・誓約</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- People -->
+    <section class="people" id="people">
+        <div class="container">
+            <p class="section-label">PEOPLE</p>
+            <h2 class="section-title">
+                彼らは、自分を売りません。<br>
+                あなたの人生を静かに支えます。
+            </h2>
+            <div class="people-grid">
+                <div class="people-card">
+                    <div class="people-image">
+                        <img src="profile1.png" alt="Secretary">
+                        <div class="people-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                    </div>
+                    <p class="people-initial">Y. H.</p>
+                    <p class="people-role">SENIOR SECRETARY</p>
+                    <p class="people-spec">医療サポート / 国際対応<br>経験：10年以上</p>
+                </div>
+                <div class="people-card">
+                    <div class="people-image">
+                        <img src="profile2.png" alt="Secretary">
+                        <div class="people-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                    </div>
+                    <p class="people-initial">M. S.</p>
+                    <p class="people-role">SENIOR SECRETARY</p>
+                    <p class="people-spec">エグゼクティブ支援 / 危機管理<br>経験：12年以上</p>
+                </div>
+                <div class="people-card">
+                    <div class="people-image">
+                        <img src="profile3.png" alt="Secretary">
+                        <div class="people-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                    </div>
+                    <p class="people-initial">M. T.</p>
+                    <p class="people-role">MEDICAL COORDINATOR</p>
+                    <p class="people-spec">看護師資格 / 緊急対応<br>経験：8年以上</p>
+                </div>
+                <div class="people-card">
+                    <div class="people-image">
+                        <img src="profile7.png" alt="Secretary">
+                        <div class="people-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                    </div>
+                    <p class="people-initial">K. T.</p>
+                    <p class="people-role">SECURITY DIRECTOR</p>
+                    <p class="people-spec">身辺警護 / 渉外対応<br>経験：15年以上</p>
+                </div>
+                <div class="people-card">
+                    <div class="people-image">
+                        <img src="profile8.png" alt="Secretary">
+                        <div class="people-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                    </div>
+                    <p class="people-initial">M. I.</p>
+                    <p class="people-role">LEGAL ADVISOR</p>
+                    <p class="people-spec">弁護士資格 / 国際法務<br>経験：10年以上</p>
+                </div>
+            </div>
+            <div class="people-member-only">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <p>詳細プロフィール・写真の閲覧は会員様のみとなっております</p>
+                <a href="member.html" class="people-member-link">会員ページへ →</a>
             </div>
         </div>
     </section>
