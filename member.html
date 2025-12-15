@@ -215,8 +215,8 @@
         /* Secretary Grid */
         .secretary-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
         }
 
         .secretary-card {
@@ -288,82 +288,84 @@
         }
 
         .secretary-content {
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
 
         .secretary-role {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
             color: var(--secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .secretary-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             letter-spacing: 0.05em;
         }
 
         .secretary-spec {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.875rem;
+            line-height: 1.5;
         }
 
         .secretary-skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            gap: 0.35rem;
+            margin-bottom: 1rem;
         }
 
         .secretary-skill {
             background: var(--bg-light);
             color: var(--text-secondary);
-            padding: 0.3rem 0.75rem;
-            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.6rem;
             letter-spacing: 0.05em;
         }
 
         .secretary-stats {
             display: flex;
-            gap: 2rem;
-            padding-top: 1.5rem;
+            gap: 1rem;
+            padding-top: 1rem;
             border-top: 1px solid var(--border);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .secretary-stat {
             text-align: center;
+            flex: 1;
         }
 
         .secretary-stat-value {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 500;
             color: var(--primary);
         }
 
         .secretary-stat-label {
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             color: var(--text-light);
             letter-spacing: 0.1em;
         }
 
         .secretary-actions {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
         .btn-detail {
             flex: 1;
-            padding: 0.875rem;
+            padding: 0.75rem;
             background: var(--bg-dark);
             color: white;
             border: none;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             letter-spacing: 0.1em;
             cursor: pointer;
             transition: all 0.3s;
@@ -374,11 +376,11 @@
         }
 
         .btn-contact {
-            padding: 0.875rem 1.25rem;
+            padding: 0.75rem 1rem;
             background: transparent;
             color: var(--primary);
             border: 1px solid var(--border);
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             letter-spacing: 0.1em;
             cursor: pointer;
             transition: all 0.3s;
@@ -582,7 +584,7 @@
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .page-container {
                 grid-template-columns: 1fr;
                 padding: 2rem;
@@ -593,7 +595,7 @@
             }
 
             .secretary-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -612,6 +614,10 @@
 
             .page-container {
                 padding: 1.5rem;
+            }
+
+            .secretary-grid {
+                grid-template-columns: 1fr;
             }
 
             footer {
@@ -825,6 +831,84 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Secretary 5 - Male Security -->
+                    <div class="secretary-card">
+                        <div class="secretary-image">
+                            <img src="profile7.png" alt="Secretary">
+                            <span class="secretary-status">SECURITY</span>
+                            <div class="secretary-favorite">
+                                <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            </div>
+                        </div>
+                        <div class="secretary-content">
+                            <p class="secretary-role">IPS SECURITY DIRECTOR</p>
+                            <h3 class="secretary-name">高橋 健一</h3>
+                            <p class="secretary-spec">元警視庁SP / 危機管理専門 / 経験15年</p>
+                            <div class="secretary-skills">
+                                <span class="secretary-skill">身辺警護</span>
+                                <span class="secretary-skill">渉外対応</span>
+                                <span class="secretary-skill">リスク分析</span>
+                            </div>
+                            <div class="secretary-stats">
+                                <div class="secretary-stat">
+                                    <div class="secretary-stat-value">4.9</div>
+                                    <div class="secretary-stat-label">RATING</div>
+                                </div>
+                                <div class="secretary-stat">
+                                    <div class="secretary-stat-value">234</div>
+                                    <div class="secretary-stat-label">SESSIONS</div>
+                                </div>
+                                <div class="secretary-stat">
+                                    <div class="secretary-stat-value">99%</div>
+                                    <div class="secretary-stat-label">SATISFACTION</div>
+                                </div>
+                            </div>
+                            <div class="secretary-actions">
+                                <button class="btn-detail">詳細を見る</button>
+                                <button class="btn-contact">連絡する</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secretary 6 - Male Legal -->
+                    <div class="secretary-card">
+                        <div class="secretary-image">
+                            <img src="profile8.png" alt="Secretary">
+                            <span class="secretary-status">LEGAL</span>
+                            <div class="secretary-favorite">
+                                <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            </div>
+                        </div>
+                        <div class="secretary-content">
+                            <p class="secretary-role">IPS LEGAL ADVISOR</p>
+                            <h3 class="secretary-name">伊藤 誠</h3>
+                            <p class="secretary-spec">弁護士資格保持 / 国際法務 / 経験10年</p>
+                            <div class="secretary-skills">
+                                <span class="secretary-skill">契約法務</span>
+                                <span class="secretary-skill">リスクマネジメント</span>
+                                <span class="secretary-skill">交渉代理</span>
+                            </div>
+                            <div class="secretary-stats">
+                                <div class="secretary-stat">
+                                    <div class="secretary-stat-value">4.8</div>
+                                    <div class="secretary-stat-label">RATING</div>
+                                </div>
+                                <div class="secretary-stat">
+                                    <div class="secretary-stat-value">178</div>
+                                    <div class="secretary-stat-label">SESSIONS</div>
+                                </div>
+                                <div class="secretary-stat">
+                                    <div class="secretary-stat-value">98%</div>
+                                    <div class="secretary-stat-label">SATISFACTION</div>
+                                </div>
+                            </div>
+                            <div class="secretary-actions">
+                                <button class="btn-detail">詳細を見る</button>
+                                <button class="btn-contact">連絡する</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -896,20 +980,20 @@
                     </a>
                     <a href="#" class="recent-item">
                         <div class="recent-image">
+                            <img src="profile7.png" alt="Recent">
+                        </div>
+                        <div class="recent-info">
+                            <div class="recent-name">高橋 健一</div>
+                            <div class="recent-role">本日 10:00 警護同行</div>
+                        </div>
+                    </a>
+                    <a href="#" class="recent-item">
+                        <div class="recent-image">
                             <img src="profile3.png" alt="Recent">
                         </div>
                         <div class="recent-info">
                             <div class="recent-name">田中 麻衣</div>
                             <div class="recent-role">昨日 22:00 夜間対応</div>
-                        </div>
-                    </a>
-                    <a href="#" class="recent-item">
-                        <div class="recent-image">
-                            <img src="profile2.png" alt="Recent">
-                        </div>
-                        <div class="recent-info">
-                            <div class="recent-name">佐藤 美咲</div>
-                            <div class="recent-role">12/13 出張同行</div>
                         </div>
                     </a>
                     <a href="#" class="sidebar-link">すべての履歴を見る →</a>
