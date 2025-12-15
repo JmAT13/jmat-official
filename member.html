@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会員専用ページ | ELITE SECRETARY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #B8860B;
+            --primary-bronze: #CD853F;
+            --gradient-primary: linear-gradient(135deg, #B8860B 0%, #D4A84B 50%, #CD853F 100%);
+            --gradient-accent: linear-gradient(135deg, #B8860B 0%, #D4A84B 100%);
+            --beige-light: #F5F0E8;
+            --beige-medium: #E8DFD0;
+            --cream: #FAF7F2;
+            --text-dark: #2C2318;
+            --text-gray: #6B5D4D;
+            --text-light: #8B7D6B;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.8;
+            background: var(--cream);
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--beige-medium);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: var(--primary-gold);
+            padding: 0.5rem 2rem;
+            font-size: 0.75rem;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-top-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-top-left svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .header-top a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            opacity: 0.9;
+        }
+
+        .header-top a:hover {
+            opacity: 1;
+        }
+
+        .header-main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            letter-spacing: 0.05em;
+        }
+
+        .logo-subtitle {
+            font-size: 0.65rem;
+            color: var(--text-gray);
+            letter-spacing: 0.2em;
+        }
+
+        .nav-main {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-main a {
+            padding: 0.75rem 1.25rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-main a:hover,
+        .nav-main a.active {
+            background: var(--beige-light);
+            color: var(--primary-gold);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--beige-light);
+            border-radius: 50px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-avatar svg {
+            width: 16px;
+            height: 16px;
+            stroke: white;
+            fill: none;
+        }
+
+        .user-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .btn-logout {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--beige-medium);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 120px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-desc {
+            color: var(--text-gray);
+        }
+
+        /* Search & Filter */
+        .search-filter {
+            background: white;
+            border: 1px solid var(--beige-medium);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--beige-medium);
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-gold);
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--beige-medium);
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            background: white;
+            cursor: pointer;
+            outline: none;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            border-color: var(--primary-gold);
+        }
+
+        .btn-search {
+            padding: 0.75rem 2rem;
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-search:hover {
+            box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3);
+        }
+
+        /* Secretary Grid */
+        .secretary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .secretary-card {
+            background: white;
+            border: 1px solid var(--beige-medium);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .secretary-card:hover {
+            box-shadow: 0 20px 50px rgba(184, 134, 11, 0.12);
+            border-color: var(--primary-gold);
+            transform: translateY(-5px);
+        }
+
+        .secretary-image {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .secretary-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .secretary-card:hover .secretary-image img {
+            transform: scale(1.05);
+        }
+
+        .secretary-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .secretary-favorite {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .secretary-favorite svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--primary-gold);
+            fill: none;
+            transition: all 0.3s;
+        }
+
+        .secretary-favorite:hover svg,
+        .secretary-favorite.active svg {
+            fill: var(--primary-gold);
+        }
+
+        .secretary-content {
+            padding: 1.5rem;
+        }
+
+        .secretary-area {
+            display: inline-block;
+            background: rgba(184, 134, 11, 0.1);
+            color: var(--primary-gold);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .secretary-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .secretary-spec {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .secretary-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .secretary-skill {
+            background: var(--beige-light);
+            color: var(--text-gray);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+        }
+
+        .secretary-stats {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--beige-medium);
+            margin-bottom: 1rem;
+        }
+
+        .secretary-stat {
+            text-align: center;
+        }
+
+        .secretary-stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+
+        .secretary-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-light);
+        }
+
+        .secretary-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-detail {
+            flex: 1;
+            padding: 0.75rem;
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-detail:hover {
+            box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-contact {
+            padding: 0.75rem 1rem;
+            background: transparent;
+            color: var(--primary-gold);
+            border: 1px solid var(--primary-gold);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-contact:hover {
+            background: rgba(184, 134, 11, 0.1);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .pagination a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--beige-medium);
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .pagination a:hover,
+        .pagination a.active {
+            background: var(--primary-gold);
+            border-color: var(--primary-gold);
+            color: white;
+        }
+
+        /* Sidebar */
+        .page-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: white;
+            border: 1px solid var(--beige-medium);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .sidebar-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--beige-medium);
+        }
+
+        .recent-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--beige-light);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+        }
+
+        .recent-item:last-child {
+            border-bottom: none;
+        }
+
+        .recent-item:hover {
+            opacity: 0.8;
+        }
+
+        .recent-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .recent-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recent-info {
+            flex: 1;
+        }
+
+        .recent-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .recent-area {
+            font-size: 0.75rem;
+            color: var(--primary-gold);
+        }
+
+        .sidebar-link {
+            display: block;
+            text-align: center;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding-top: 1rem;
+        }
+
+        .sidebar-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Stats Card */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--beige-light);
+            border-radius: 0.5rem;
+        }
+
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            border-top: 1px solid var(--beige-medium);
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-content p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--primary-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .secretary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-main {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-main {
+                display: none;
+            }
+
+            .secretary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-row {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="header-top-left">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>会員専用ページ - PREMIUM会員としてログイン中</span>
+            </div>
+            <a href="secretary.html">
+                トップページへ戻る
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="header-main">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                    <div class="logo-text">ELITE SECRETARY</div>
+                    <div class="logo-subtitle">MEMBER'S PAGE</div>
+                </div>
+            </a>
+
+            <nav class="nav-main">
+                <a href="#" class="active">秘書一覧</a>
+                <a href="#">お気に入り</a>
+                <a href="#">メッセージ</a>
+                <a href="#">予約管理</a>
+                <a href="#">設定</a>
+            </nav>
+
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="user-name">山田 太郎 様</span>
+                </div>
+                <button class="btn-logout">ログアウト</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="page-layout">
+                <div class="main-content">
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <h1 class="page-title"><span class="gradient-text">秘書会員一覧</span></h1>
+                        <p class="page-desc">厳選された秘書会員のプロフィールをご覧いただけます。</p>
+                    </div>
+
+                    <!-- Search & Filter -->
+                    <div class="search-filter">
+                        <div class="search-row">
+                            <input type="text" class="search-input" placeholder="キーワードで検索...">
+                            <select class="filter-select">
+                                <option value="">エリア選択</option>
+                                <option value="tokyo">東京</option>
+                                <option value="osaka">大阪</option>
+                                <option value="nagoya">名古屋</option>
+                                <option value="fukuoka">福岡</option>
+                                <option value="sapporo">札幌</option>
+                                <option value="yokohama">横浜</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="">スキル</option>
+                                <option value="english">英語</option>
+                                <option value="chinese">中国語</option>
+                                <option value="french">フランス語</option>
+                                <option value="mba">MBA</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="">並び替え</option>
+                                <option value="new">新着順</option>
+                                <option value="popular">人気順</option>
+                                <option value="rating">評価順</option>
+                            </select>
+                            <button class="btn-search">検索</button>
+                        </div>
+                    </div>
+
+                    <!-- Secretary Grid -->
+                    <div class="secretary-grid">
+                        <!-- Secretary 1 -->
+                        <div class="secretary-card">
+                            <div class="secretary-image">
+                                <img src="profile1.png" alt="Secretary">
+                                <span class="secretary-badge">NEW</span>
+                                <div class="secretary-favorite">
+                                    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </div>
+                            </div>
+                            <div class="secretary-content">
+                                <span class="secretary-area">東京</span>
+                                <h3 class="secretary-name">山田 花子</h3>
+                                <p class="secretary-spec">東京大学卒 / Harvard MBA / 秘書歴12年</p>
+                                <div class="secretary-skills">
+                                    <span class="secretary-skill">日本語</span>
+                                    <span class="secretary-skill">英語</span>
+                                    <span class="secretary-skill">フランス語</span>
+                                    <span class="secretary-skill">M&A</span>
+                                </div>
+                                <div class="secretary-stats">
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">4.9</div>
+                                        <div class="secretary-stat-label">評価</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">156</div>
+                                        <div class="secretary-stat-label">実績</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">98%</div>
+                                        <div class="secretary-stat-label">満足度</div>
+                                    </div>
+                                </div>
+                                <div class="secretary-actions">
+                                    <button class="btn-detail">詳細を見る</button>
+                                    <button class="btn-contact">連絡する</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secretary 2 -->
+                        <div class="secretary-card">
+                            <div class="secretary-image">
+                                <img src="profile2.png" alt="Secretary">
+                                <span class="secretary-badge">POPULAR</span>
+                                <div class="secretary-favorite active">
+                                    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </div>
+                            </div>
+                            <div class="secretary-content">
+                                <span class="secretary-area">大阪</span>
+                                <h3 class="secretary-name">佐藤 美咲</h3>
+                                <p class="secretary-spec">慶應義塾大学卒 / 外資系金融出身 / 秘書歴8年</p>
+                                <div class="secretary-skills">
+                                    <span class="secretary-skill">日本語</span>
+                                    <span class="secretary-skill">英語</span>
+                                    <span class="secretary-skill">中国語</span>
+                                    <span class="secretary-skill">IR</span>
+                                </div>
+                                <div class="secretary-stats">
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">4.8</div>
+                                        <div class="secretary-stat-label">評価</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">203</div>
+                                        <div class="secretary-stat-label">実績</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">97%</div>
+                                        <div class="secretary-stat-label">満足度</div>
+                                    </div>
+                                </div>
+                                <div class="secretary-actions">
+                                    <button class="btn-detail">詳細を見る</button>
+                                    <button class="btn-contact">連絡する</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secretary 3 -->
+                        <div class="secretary-card">
+                            <div class="secretary-image">
+                                <img src="profile3.png" alt="Secretary">
+                                <div class="secretary-favorite">
+                                    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </div>
+                            </div>
+                            <div class="secretary-content">
+                                <span class="secretary-area">福岡</span>
+                                <h3 class="secretary-name">田中 麻衣</h3>
+                                <p class="secretary-spec">京都大学卒 / 元外交官 / 秘書歴10年</p>
+                                <div class="secretary-skills">
+                                    <span class="secretary-skill">日本語</span>
+                                    <span class="secretary-skill">英語</span>
+                                    <span class="secretary-skill">アラビア語</span>
+                                    <span class="secretary-skill">国際法</span>
+                                </div>
+                                <div class="secretary-stats">
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">4.9</div>
+                                        <div class="secretary-stat-label">評価</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">89</div>
+                                        <div class="secretary-stat-label">実績</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">99%</div>
+                                        <div class="secretary-stat-label">満足度</div>
+                                    </div>
+                                </div>
+                                <div class="secretary-actions">
+                                    <button class="btn-detail">詳細を見る</button>
+                                    <button class="btn-contact">連絡する</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secretary 4 -->
+                        <div class="secretary-card">
+                            <div class="secretary-image">
+                                <img src="profile4.png" alt="Secretary">
+                                <span class="secretary-badge">NEW</span>
+                                <div class="secretary-favorite">
+                                    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </div>
+                            </div>
+                            <div class="secretary-content">
+                                <span class="secretary-area">名古屋</span>
+                                <h3 class="secretary-name">鈴木 優子</h3>
+                                <p class="secretary-spec">一橋大学卒 / 元商社勤務 / 秘書歴7年</p>
+                                <div class="secretary-skills">
+                                    <span class="secretary-skill">日本語</span>
+                                    <span class="secretary-skill">英語</span>
+                                    <span class="secretary-skill">スペイン語</span>
+                                    <span class="secretary-skill">貿易実務</span>
+                                </div>
+                                <div class="secretary-stats">
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">4.7</div>
+                                        <div class="secretary-stat-label">評価</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">67</div>
+                                        <div class="secretary-stat-label">実績</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">96%</div>
+                                        <div class="secretary-stat-label">満足度</div>
+                                    </div>
+                                </div>
+                                <div class="secretary-actions">
+                                    <button class="btn-detail">詳細を見る</button>
+                                    <button class="btn-contact">連絡する</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secretary 5 -->
+                        <div class="secretary-card">
+                            <div class="secretary-image">
+                                <img src="profile5.png" alt="Secretary">
+                                <div class="secretary-favorite">
+                                    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </div>
+                            </div>
+                            <div class="secretary-content">
+                                <span class="secretary-area">横浜</span>
+                                <h3 class="secretary-name">高橋 理恵</h3>
+                                <p class="secretary-spec">上智大学卒 / 国際会議通訳 / 秘書歴9年</p>
+                                <div class="secretary-skills">
+                                    <span class="secretary-skill">日本語</span>
+                                    <span class="secretary-skill">英語</span>
+                                    <span class="secretary-skill">ドイツ語</span>
+                                    <span class="secretary-skill">同時通訳</span>
+                                </div>
+                                <div class="secretary-stats">
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">4.8</div>
+                                        <div class="secretary-stat-label">評価</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">124</div>
+                                        <div class="secretary-stat-label">実績</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">98%</div>
+                                        <div class="secretary-stat-label">満足度</div>
+                                    </div>
+                                </div>
+                                <div class="secretary-actions">
+                                    <button class="btn-detail">詳細を見る</button>
+                                    <button class="btn-contact">連絡する</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secretary 6 -->
+                        <div class="secretary-card">
+                            <div class="secretary-image">
+                                <img src="profile6.png" alt="Secretary">
+                                <span class="secretary-badge">RECOMMEND</span>
+                                <div class="secretary-favorite">
+                                    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </div>
+                            </div>
+                            <div class="secretary-content">
+                                <span class="secretary-area">札幌</span>
+                                <h3 class="secretary-name">伊藤 沙織</h3>
+                                <p class="secretary-spec">早稲田大学卒 / 元大手商社 / 秘書歴6年</p>
+                                <div class="secretary-skills">
+                                    <span class="secretary-skill">日本語</span>
+                                    <span class="secretary-skill">英語</span>
+                                    <span class="secretary-skill">韓国語</span>
+                                    <span class="secretary-skill">経理</span>
+                                </div>
+                                <div class="secretary-stats">
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">4.6</div>
+                                        <div class="secretary-stat-label">評価</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">45</div>
+                                        <div class="secretary-stat-label">実績</div>
+                                    </div>
+                                    <div class="secretary-stat">
+                                        <div class="secretary-stat-value">95%</div>
+                                        <div class="secretary-stat-label">満足度</div>
+                                    </div>
+                                </div>
+                                <div class="secretary-actions">
+                                    <button class="btn-detail">詳細を見る</button>
+                                    <button class="btn-contact">連絡する</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#">←</a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">→</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Stats Card -->
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">会員ステータス</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">PREMIUM</div>
+                                <div class="stat-label">会員ランク</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">365日</div>
+                                <div class="stat-label">残り期間</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">お気に入り</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">予約中</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Viewed -->
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">最近見た秘書</h3>
+                        <a href="#" class="recent-item">
+                            <div class="recent-image">
+                                <img src="profile1.png" alt="Recent">
+                            </div>
+                            <div class="recent-info">
+                                <div class="recent-name">山田 花子</div>
+                                <div class="recent-area">東京</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-item">
+                            <div class="recent-image">
+                                <img src="profile2.png" alt="Recent">
+                            </div>
+                            <div class="recent-info">
+                                <div class="recent-name">佐藤 美咲</div>
+                                <div class="recent-area">大阪</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-item">
+                            <div class="recent-image">
+                                <img src="profile3.png" alt="Recent">
+                            </div>
+                            <div class="recent-info">
+                                <div class="recent-name">田中 麻衣</div>
+                                <div class="recent-area">福岡</div>
+                            </div>
+                        </a>
+                        <a href="#" class="sidebar-link">すべて見る →</a>
+                    </div>
+
+                    <!-- Favorites -->
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">お気に入り秘書</h3>
+                        <a href="#" class="recent-item">
+                            <div class="recent-image">
+                                <img src="profile2.png" alt="Favorite">
+                            </div>
+                            <div class="recent-info">
+                                <div class="recent-name">佐藤 美咲</div>
+                                <div class="recent-area">大阪</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-item">
+                            <div class="recent-image">
+                                <img src="profile4.png" alt="Favorite">
+                            </div>
+                            <div class="recent-info">
+                                <div class="recent-name">鈴木 優子</div>
+                                <div class="recent-area">名古屋</div>
+                            </div>
+                        </a>
+                        <a href="#" class="sidebar-link">すべて見る →</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 ELITE SECRETARY. All rights reserved.</p>
+            <p class="footer-tagline">"Your Time, Our Priority."</p>
+        </div>
+    </footer>
+
+    <script>
+        // Favorite toggle
+        document.querySelectorAll('.secretary-favorite').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
