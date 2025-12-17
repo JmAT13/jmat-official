@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>介護施設入居者様向けサービス | PARTNER</title>
+    <meta name="description" content="施設に入っても「人生の主導権」を手放さないために。介護施設入居者様向け秘書サービス。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #8B7355;
+            --accent: #C4A77D;
+            --bg-dark: #0a0a0a;
+            --bg-light: #FAFAF8;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666;
+            --text-light: #999;
+            --border: #e5e5e5;
+            --green: #4A7C59;
+            --red: #8B4049;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.9;
+            background: var(--bg-light);
+            font-weight: 300;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 var(--border);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .header-nav a {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .header-nav a:hover {
+            color: var(--primary);
+        }
+
+        .back-link {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, #f5f5f3 0%, var(--bg-light) 100%);
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-dark);
+            color: white;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 2;
+            max-width: 600px;
+        }
+
+        /* Section Common */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .section-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 2.2;
+        }
+
+        /* Structure Section */
+        .structure {
+            background: white;
+        }
+
+        .structure-diagram {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .structure-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .structure-box {
+            padding: 1.25rem 2.5rem;
+            border: 2px solid var(--border);
+            background: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-width: 280px;
+        }
+
+        .structure-box.primary {
+            border-color: var(--secondary);
+            background: rgba(139, 115, 85, 0.05);
+        }
+
+        .structure-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+
+        .structure-arrow::before {
+            content: '';
+            width: 1px;
+            height: 20px;
+            background: var(--border);
+        }
+
+        .structure-arrow::after {
+            content: '▼';
+            font-size: 0.6rem;
+            margin-top: -5px;
+        }
+
+        .structure-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .structure-point {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+        }
+
+        .structure-point-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .structure-point-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--secondary);
+            fill: none;
+        }
+
+        .structure-point h4 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .structure-point p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Contracts Section */
+        .contracts {
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .contracts .section-label {
+            color: var(--accent);
+        }
+
+        .contracts .section-title {
+            color: white;
+        }
+
+        .contract-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contract-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+        }
+
+        .contract-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contract-parties {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .contract-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(196, 167, 125, 0.2);
+            color: var(--accent);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .contract-details {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.9;
+        }
+
+        /* Scope Section */
+        .scope {
+            background: var(--bg-light);
+        }
+
+        .scope-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .scope-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+        }
+
+        .scope-card.ok {
+            border-top: 3px solid var(--green);
+        }
+
+        .scope-card.ng {
+            border-top: 3px solid var(--red);
+        }
+
+        .scope-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .scope-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scope-card.ok .scope-icon {
+            background: rgba(74, 124, 89, 0.1);
+        }
+
+        .scope-card.ng .scope-icon {
+            background: rgba(139, 64, 73, 0.1);
+        }
+
+        .scope-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .scope-card.ok .scope-icon svg {
+            stroke: var(--green);
+        }
+
+        .scope-card.ng .scope-icon svg {
+            stroke: var(--red);
+        }
+
+        .scope-title {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .scope-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .scope-list {
+            list-style: none;
+        }
+
+        .scope-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .scope-list li:last-child {
+            border-bottom: none;
+        }
+
+        .scope-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .scope-card.ok .scope-list li::before {
+            background: var(--green);
+        }
+
+        .scope-card.ng .scope-list li::before {
+            background: var(--red);
+        }
+
+        .scope-note {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(139, 115, 85, 0.05);
+            border-left: 3px solid var(--secondary);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Rules Section */
+        .rules {
+            background: white;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .rule-card {
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .rule-card h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .rule-card h4 svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--secondary);
+            fill: none;
+        }
+
+        .rule-card ul {
+            list-style: none;
+        }
+
+        .rule-card li {
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .rule-card li::before {
+            content: '・';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        /* Responsibility Section */
+        .responsibility {
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .responsibility .section-label {
+            color: var(--accent);
+        }
+
+        .responsibility .section-title {
+            color: white;
+        }
+
+        .responsibility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .responsibility-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .responsibility-card h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .responsibility-card p {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .responsibility-card span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .responsibility-note {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Insurance Section */
+        .insurance {
+            background: var(--bg-light);
+        }
+
+        .insurance-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .insurance-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 2rem;
+        }
+
+        .insurance-card h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .insurance-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+        }
+
+        .insurance-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--green);
+            fill: none;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .insurance-item span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Message Section */
+        .message {
+            background: white;
+            text-align: center;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: white;
+        }
+
+        .pricing-base {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+        }
+
+        .pricing-base-main {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border: 1px solid var(--border);
+        }
+
+        .pricing-base-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-base-price {
+            margin-bottom: 1rem;
+        }
+
+        .pricing-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .pricing-unit {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .pricing-base-note {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .pricing-base-reason {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .pricing-base-reason h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-base-reason ul {
+            list-style: none;
+        }
+
+        .pricing-base-reason li {
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pricing-base-reason li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+        }
+
+        .pricing-section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .pricing-plans {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .pricing-plan {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-plan.recommended {
+            background: white;
+            border: 2px solid var(--secondary);
+            transform: scale(1.02);
+        }
+
+        .plan-badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: var(--bg-dark);
+            color: white;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-plan.recommended .plan-badge {
+            background: var(--secondary);
+        }
+
+        .plan-name {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-desc {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-price {
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .plan-unit {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .plan-hours {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .plan-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-features li {
+            padding: 0.4rem 0;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .plan-features li::before {
+            content: '・';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        .plan-fit {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-style: italic;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .pricing-spot {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .spot-item {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .spot-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .spot-price {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* Cases Section */
+        .cases {
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .cases .section-label {
+            color: var(--accent);
+        }
+
+        .cases .section-title {
+            color: white;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+        }
+
+        .case-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .case-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .case-bg {
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .case-bg-label,
+        .case-usage-label,
+        .case-price-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.5);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-bg ul {
+            list-style: none;
+        }
+
+        .case-bg li {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.2rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .case-bg li::before {
+            content: '・';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .case-usage {
+            margin-bottom: 1.25rem;
+        }
+
+        .case-usage p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .case-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-price-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        .case-point {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            background: var(--bg-light);
+        }
+
+        .comparison-table {
+            margin-top: 3rem;
+            border: 1px solid var(--border);
+            background: white;
+        }
+
+        .comparison-header,
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 150px 1fr 1fr;
+        }
+
+        .comparison-header {
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .comparison-header .comparison-cell {
+            padding: 1.25rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison-header .comparison-cell.highlight {
+            background: var(--secondary);
+        }
+
+        .comparison-row {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-cell {
+            padding: 1rem 1.25rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comparison-cell.label {
+            background: var(--bg-light);
+            font-weight: 500;
+            color: var(--text-primary);
+            justify-content: flex-start;
+        }
+
+        .comparison-cell.highlight {
+            background: rgba(196, 167, 125, 0.08);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .comparison-note {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 2;
+        }
+
+        .message-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .message-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 400;
+            line-height: 2;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .message-dual {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .message-target {
+            padding: 2.5rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .message-target h4 {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .message-statement {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--primary);
+        }
+
+        .message-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .message-benefit {
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+        }
+
+        .message-benefit h4 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .message-benefit p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--bg-dark);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta .section-title {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: var(--bg-dark);
+        }
+
+        .cta-btn-primary:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-btn-secondary:hover {
+            border-color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            color: rgba(255,255,255,0.5);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-copy {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .structure-points,
+            .contract-grid,
+            .responsibility-grid,
+            .cases-grid,
+            .pricing-plans {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-plan.recommended {
+                transform: none;
+            }
+
+            .message-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-spot {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 120px 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .scope-grid,
+            .rules-grid,
+            .insurance-grid,
+            .message-dual {
+                grid-template-columns: 1fr;
+            }
+
+            .message-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .structure-diagram {
+                padding: 2rem 1rem;
+            }
+
+            .structure-box {
+                min-width: auto;
+                padding: 1rem 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            .pricing-base {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-spot {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 100px 1fr 1fr;
+            }
+
+            .comparison-cell {
+                padding: 0.75rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="secretary.html" class="logo">PARTNER</a>
+        <nav class="header-nav">
+            <a href="#structure">スキーム</a>
+            <a href="#scope">業務範囲</a>
+            <a href="#pricing">料金</a>
+            <a href="#cases">導入例</a>
+            <a href="secretary.html" class="back-link">← トップへ戻る</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <span class="hero-badge">FOR CARE FACILITY RESIDENTS</span>
+        <h1 class="hero-title">
+            施設に入っても、<br>
+            「人生の主導権」を手放さないために。
+        </h1>
+        <p class="hero-subtitle">
+            介護施設入居者様向けの秘書サービス。<br>
+            施設の運営に干渉せず、あなたの私的生活を静かに支えます。
+        </p>
+    </section>
+
+    <!-- Structure -->
+    <section class="structure" id="structure">
+        <div class="container">
+            <p class="section-label">SCHEME</p>
+            <h2 class="section-title">施設出入りを可能にするスキーム設計</h2>
+            
+            <div class="structure-diagram">
+                <div class="structure-flow">
+                    <div class="structure-box">入居者様（個人）</div>
+                    <div class="structure-arrow">個人契約</div>
+                    <div class="structure-box primary">PARTNER 秘書サービス（外部）</div>
+                    <div class="structure-arrow">業務委託・施設ルール遵守</div>
+                    <div class="structure-box">介護施設（出入り許可・協定）</div>
+                </div>
+            </div>
+
+            <div class="structure-points">
+                <div class="structure-point">
+                    <div class="structure-point-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                    </div>
+                    <h4>施設は契約当事者にならない</h4>
+                    <p>施設の責任・負担を最小化</p>
+                </div>
+                <div class="structure-point">
+                    <div class="structure-point-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <h4>入居者様の私的サービス</h4>
+                    <p>あくまで個人の自由な選択</p>
+                </div>
+                <div class="structure-point">
+                    <div class="structure-point-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4>施設の管理権・安全権限は最優先</h4>
+                    <p>施設ルールを絶対遵守</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contracts -->
+    <section class="contracts" id="contracts">
+        <div class="container">
+            <p class="section-label">CONTRACTS</p>
+            <h2 class="section-title">契約関係の整理</h2>
+
+            <div class="contract-grid">
+                <div class="contract-card">
+                    <div class="contract-num">01</div>
+                    <div class="contract-parties">入居者様 × PARTNER</div>
+                    <span class="contract-type">個人契約</span>
+                    <div class="contract-details">
+                        年会費・サービス内容・拒否権・守秘義務を明記。医療・介護行為を行わないことを明確化。介護保険サービスではないと明示。
+                    </div>
+                </div>
+                <div class="contract-card">
+                    <div class="contract-num">02</div>
+                    <div class="contract-parties">PARTNER × 介護施設</div>
+                    <span class="contract-type">協定書</span>
+                    <div class="contract-details">
+                        出入りルール・業務範囲の限定・緊急時の連携方法・事故時の責任分界・保険加入確認。契約ではなく「協定」で施設の心理的ハードルを軽減。
+                    </div>
+                </div>
+                <div class="contract-card">
+                    <div class="contract-num">03</div>
+                    <div class="contract-parties">入居者様 × 介護施設</div>
+                    <span class="contract-type">同意書</span>
+                    <div class="contract-details">
+                        「自己責任においてPARTNER秘書サービスを私的に利用することに同意」施設免責条項を含む。必要に応じ家族・後見人の署名。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scope -->
+    <section class="scope" id="scope">
+        <div class="container">
+            <p class="section-label">SCOPE OF SERVICE</p>
+            <h2 class="section-title">業務範囲の明確化</h2>
+
+            <div class="scope-grid">
+                <div class="scope-card ok">
+                    <div class="scope-header">
+                        <div class="scope-icon">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div>
+                            <div class="scope-title">対応可能な業務</div>
+                            <div class="scope-subtitle">施設が許容しやすい範囲</div>
+                        </div>
+                    </div>
+                    <ul class="scope-list">
+                        <li>話し相手・傾聴</li>
+                        <li>外出・来客時の付き添い（施設許可範囲内）</li>
+                        <li>書類整理・意思確認の補助</li>
+                        <li>家族・医師との連絡調整</li>
+                        <li>医療判断の補助（同席・情報整理）</li>
+                        <li>買い物代行・手配業務</li>
+                        <li>財産管理の補助（記録・整理）</li>
+                    </ul>
+                </div>
+
+                <div class="scope-card ng">
+                    <div class="scope-header">
+                        <div class="scope-icon">
+                            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </div>
+                        <div>
+                            <div class="scope-title">対応不可の業務</div>
+                            <div class="scope-subtitle">必ず線を引く領域</div>
+                        </div>
+                    </div>
+                    <ul class="scope-list">
+                        <li>身体介助（入浴・排泄・移乗）</li>
+                        <li>医療行為全般</li>
+                        <li>介護計画への介入</li>
+                        <li>施設職員への指示</li>
+                        <li>施設運営への干渉</li>
+                        <li>医薬品の管理・投与</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="scope-note">
+                <strong>設計思想：</strong>「施設の仕事を奪わない」ことが重要です。PARTNERは施設サービスの補完ではなく、入居者様の私的生活支援に特化します。
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules -->
+    <section class="rules" id="rules">
+        <div class="container">
+            <p class="section-label">FACILITY RULES</p>
+            <h2 class="section-title">施設出入りルール</h2>
+
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h4>
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                        出入り条件
+                    </h4>
+                    <ul>
+                        <li>事前登録制（秘書個人）</li>
+                        <li>顔写真・身分証提出</li>
+                        <li>守秘義務・施設規則遵守誓約</li>
+                        <li>出入り時間帯の制限遵守</li>
+                        <li>入館記録の徹底</li>
+                    </ul>
+                </div>
+
+                <div class="rule-card">
+                    <h4>
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        施設への提出書類
+                    </h4>
+                    <ul>
+                        <li>賠償責任保険証明書</li>
+                        <li>業務マニュアル（簡易版）</li>
+                        <li>秘書の拒否権・安全ルール説明書</li>
+                        <li>緊急連絡体制表</li>
+                        <li>高齢者虐待防止研修修了証</li>
+                    </ul>
+                </div>
+
+                <div class="rule-card">
+                    <h4>
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        遵守事項
+                    </h4>
+                    <ul>
+                        <li>施設の運営・介護業務に一切干渉しない</li>
+                        <li>入居者様の私的生活の範囲にのみ関与</li>
+                        <li>他入居者様への接触禁止</li>
+                        <li>施設内撮影禁止</li>
+                        <li>感染症対策の徹底</li>
+                    </ul>
+                </div>
+
+                <div class="rule-card">
+                    <h4>
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        緊急時対応
+                    </h4>
+                    <ul>
+                        <li>施設職員への即時報告</li>
+                        <li>施設の指示に絶対服従</li>
+                        <li>独自判断での医療行為禁止</li>
+                        <li>記録の即時作成・共有</li>
+                        <li>PARTNER本部への報告</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Responsibility -->
+    <section class="responsibility">
+        <div class="container">
+            <p class="section-label">RESPONSIBILITY</p>
+            <h2 class="section-title">事故・トラブル時の責任分界</h2>
+
+            <div class="responsibility-grid">
+                <div class="responsibility-card">
+                    <h4>施設内事故</h4>
+                    <p>施設ルール優先</p>
+                    <span>施設の管理下で発生した事故は施設の責任範囲</span>
+                </div>
+                <div class="responsibility-card">
+                    <h4>PARTNER業務中のトラブル</h4>
+                    <p>PARTNER責任</p>
+                    <span>秘書サービス提供中の事故はPARTNERが全責任を負う</span>
+                </div>
+                <div class="responsibility-card">
+                    <h4>医療・介護判断</h4>
+                    <p>施設・医療機関</p>
+                    <span>医療・介護に関する判断は専門機関の責任範囲</span>
+                </div>
+            </div>
+
+            <div class="responsibility-note">
+                責任分界は曖昧にしません。曖昧だと施設は絶対にOKしません。
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance -->
+    <section class="insurance">
+        <div class="container">
+            <p class="section-label">INSURANCE & COMPLIANCE</p>
+            <h2 class="section-title">保険・法務体制</h2>
+
+            <div class="insurance-grid">
+                <div class="insurance-card">
+                    <h4>PARTNER側の必須体制</h4>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>賠償責任保険（対人・対物）加入</span>
+                    </div>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>個人情報保護体制の整備</span>
+                    </div>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>高齢者虐待防止研修の実施</span>
+                    </div>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>秘書の身元保証・バックグラウンドチェック</span>
+                    </div>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>定期的なコンプライアンス研修</span>
+                    </div>
+                </div>
+
+                <div class="insurance-card">
+                    <h4>施設への提示資料</h4>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>保険証明書（補償内容・金額明記）</span>
+                    </div>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>業務マニュアル（簡易版）</span>
+                    </div>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>秘書の拒否権・安全ルール</span>
+                    </div>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>緊急連絡先一覧</span>
+                    </div>
+                    <div class="insurance-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>研修修了証明書</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <p class="section-label">PRICING</p>
+            <h2 class="section-title">料金設計</h2>
+
+            <div class="pricing-base">
+                <div class="pricing-base-main">
+                    <p class="pricing-base-label">基本利用料</p>
+                    <div class="pricing-base-price">
+                        <span class="pricing-amount">30,000</span>
+                        <span class="pricing-unit">円／時間（税別）</span>
+                    </div>
+                    <p class="pricing-base-note">※ 最低利用時間：2時間〜</p>
+                </div>
+                <div class="pricing-base-reason">
+                    <h4>この料金が成立する理由</h4>
+                    <ul>
+                        <li>介護保険外サービスの上位帯</li>
+                        <li>富裕層にとって「比較対象がない」</li>
+                        <li>施設職員では担えない役割</li>
+                        <li>家族が払うケースでも納得しやすい</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="pricing-section-title">月額パッケージプラン</h3>
+            <div class="pricing-plans">
+                <div class="pricing-plan">
+                    <div class="plan-badge">LIGHT</div>
+                    <h4 class="plan-name">ライトプラン</h4>
+                    <p class="plan-desc">導入・お試し向け</p>
+                    <div class="plan-price">
+                        <span class="plan-amount">120,000</span>
+                        <span class="plan-unit">円／月</span>
+                    </div>
+                    <div class="plan-hours">月4時間</div>
+                    <ul class="plan-features">
+                        <li>週1回×1時間</li>
+                        <li>定期的な話し相手</li>
+                        <li>簡単な書類整理</li>
+                    </ul>
+                    <p class="plan-fit">「まず試したい」<br>「家族主導で導入」</p>
+                </div>
+
+                <div class="pricing-plan recommended">
+                    <div class="plan-badge">STANDARD</div>
+                    <h4 class="plan-name">スタンダードプラン</h4>
+                    <p class="plan-desc">最も現実的</p>
+                    <div class="plan-price">
+                        <span class="plan-amount">300,000</span>
+                        <span class="plan-unit">円／月</span>
+                    </div>
+                    <div class="plan-hours">月10時間</div>
+                    <ul class="plan-features">
+                        <li>定期的な話し相手・傾聴</li>
+                        <li>外出同行</li>
+                        <li>医師面談同席</li>
+                        <li>家族との橋渡し</li>
+                    </ul>
+                    <p class="plan-fit">継続的なサポートに</p>
+                </div>
+
+                <div class="pricing-plan">
+                    <div class="plan-badge">PREMIUM</div>
+                    <h4 class="plan-name">プレミアムプラン</h4>
+                    <p class="plan-desc">富裕層向け</p>
+                    <div class="plan-price">
+                        <span class="plan-amount">600,000</span>
+                        <span class="plan-unit">円／月</span>
+                    </div>
+                    <div class="plan-hours">月20時間</div>
+                    <ul class="plan-features">
+                        <li>週複数回の訪問</li>
+                        <li>医療判断同席</li>
+                        <li>外出・通院同行</li>
+                        <li>生活設計サポート</li>
+                    </ul>
+                    <p class="plan-fit">施設入居中でも<br>「秘書がいる生活」を維持</p>
+                </div>
+            </div>
+
+            <h3 class="pricing-section-title">スポット・特別対応</h3>
+            <div class="pricing-spot">
+                <div class="spot-item">
+                    <div class="spot-label">当日依頼</div>
+                    <div class="spot-price">+10,000円／h</div>
+                </div>
+                <div class="spot-item">
+                    <div class="spot-label">夜間対応（18時以降）</div>
+                    <div class="spot-price">+10,000円／h</div>
+                </div>
+                <div class="spot-item">
+                    <div class="spot-label">外出・通院同行</div>
+                    <div class="spot-price">基本料金＋交通費実費</div>
+                </div>
+                <div class="spot-item">
+                    <div class="spot-label">待機時間</div>
+                    <div class="spot-price">課金対象</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases -->
+    <section class="cases" id="cases">
+        <div class="container">
+            <p class="section-label">CASE STUDIES</p>
+            <h2 class="section-title">導入例</h2>
+
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-num">CASE 01</div>
+                    <h4 class="case-title">施設入居中の富裕層男性（80代）</h4>
+                    <div class="case-bg">
+                        <span class="case-bg-label">背景</span>
+                        <ul>
+                            <li>判断力はある</li>
+                            <li>施設職員とは距離がある</li>
+                            <li>家族は海外在住</li>
+                        </ul>
+                    </div>
+                    <div class="case-usage">
+                        <span class="case-usage-label">利用内容</span>
+                        <p>月2回 × 2時間<br>話し相手／書類整理／医師説明の整理</p>
+                    </div>
+                    <div class="case-price">
+                        <span class="case-price-label">月額</span>
+                        <span class="case-price-amount">120,000円</span>
+                    </div>
+                    <p class="case-point">→ 家族が即OKしやすい金額</p>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-num">CASE 02</div>
+                    <h4 class="case-title">女性入居者＋娘が契約者</h4>
+                    <div class="case-bg">
+                        <span class="case-bg-label">背景</span>
+                        <ul>
+                            <li>娘が介護疲れ</li>
+                            <li>施設とのやり取りが心理的負担</li>
+                        </ul>
+                    </div>
+                    <div class="case-usage">
+                        <span class="case-usage-label">利用内容</span>
+                        <p>月10時間<br>家族連絡／施設調整／外出付き添い</p>
+                    </div>
+                    <div class="case-price">
+                        <span class="case-price-label">月額</span>
+                        <span class="case-price-amount">300,000円</span>
+                    </div>
+                    <p class="case-point">→ 娘の精神的コストが一気に下がる</p>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-num">CASE 03</div>
+                    <h4 class="case-title">資産家・判断支援型</h4>
+                    <div class="case-bg">
+                        <span class="case-bg-label">背景</span>
+                        <ul>
+                            <li>認知機能は問題なし</li>
+                            <li>「自分の人生を自分で決めたい」</li>
+                        </ul>
+                    </div>
+                    <div class="case-usage">
+                        <span class="case-usage-label">利用内容</span>
+                        <p>月20時間<br>医療判断同席／外出同行／生活設計</p>
+                    </div>
+                    <div class="case-price">
+                        <span class="case-price-label">月額</span>
+                        <span class="case-price-amount">600,000円</span>
+                    </div>
+                    <p class="case-point">→ 施設に入っても「秘書がいる人生」</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison">
+        <div class="container">
+            <p class="section-label">PLAN COMPARISON</p>
+            <h2 class="section-title">年会費1億円プランとの棲み分け</h2>
+
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div class="comparison-cell"></div>
+                    <div class="comparison-cell">施設向け個別利用</div>
+                    <div class="comparison-cell highlight">年会費1億円契約</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell label">契約形態</div>
+                    <div class="comparison-cell">個別・時間制</div>
+                    <div class="comparison-cell highlight">年間専属</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell label">主目的</div>
+                    <div class="comparison-cell">生活補助</div>
+                    <div class="comparison-cell highlight">人生預託</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell label">利用者</div>
+                    <div class="comparison-cell">入居者・家族</div>
+                    <div class="comparison-cell highlight">超VIP</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell label">秘書体制</div>
+                    <div class="comparison-cell">単独</div>
+                    <div class="comparison-cell highlight">専属チーム</div>
+                </div>
+            </div>
+
+            <p class="comparison-note">
+                施設向け個別利用から年会費プランへの移行も可能です。<br>
+                導線として相性が良く、信頼関係を築いた上でのステップアップをお勧めします。
+            </p>
+        </div>
+    </section>
+
+    <!-- Message -->
+    <section class="message">
+        <div class="container">
+            <p class="section-label">MESSAGE</p>
+            <div class="message-box">
+                <p class="message-quote">
+                    このサービスは、<br>
+                    施設に入っても「人生の主導権」を<br>
+                    手放さないためのものです。
+                </p>
+            </div>
+
+            <div class="message-dual">
+                <div class="message-target">
+                    <h4>ご家族へ</h4>
+                    <p class="message-statement">
+                        これは介護ではありません。<br>
+                        ご本人の意思と尊厳を守るための時間です。
+                    </p>
+                </div>
+                <div class="message-target">
+                    <h4>施設ご担当者様へ</h4>
+                    <p class="message-statement">
+                        入居者様の満足度を高め、<br>
+                        職員様の業務負担を増やさない<br>
+                        私的サポートです。
+                    </p>
+                </div>
+            </div>
+
+            <div class="message-grid">
+                <div class="message-benefit">
+                    <h4>施設にとって</h4>
+                    <p>責任を負わず、入居者満足度向上</p>
+                </div>
+                <div class="message-benefit">
+                    <h4>入居者様にとって</h4>
+                    <p>自由と尊厳を守れる</p>
+                </div>
+                <div class="message-benefit">
+                    <h4>ご家族にとって</h4>
+                    <p>安心と信頼のサポート</p>
+                </div>
+                <div class="message-benefit">
+                    <h4>秘書にとって</h4>
+                    <p>安全に、責任を持って関われる</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="section-title">ご相談・お問い合わせ</h2>
+        <p class="cta-text">
+            介護施設入居者様向けサービスについて、詳しくご説明いたします。<br>
+            施設との協定についてもお気軽にご相談ください。
+        </p>
+        <div class="cta-buttons">
+            <a href="secretary.html#request" class="cta-btn cta-btn-primary">契約を申請する</a>
+            <a href="secretary.html" class="cta-btn cta-btn-secondary">トップページへ</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-logo">PARTNER</p>
+        <p class="footer-copy">© 2025 PARTNER. All rights reserved.</p>
+    </footer>
+</body>
+</html>
